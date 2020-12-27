@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-int main() {
-	ft_
+unsigned ft_strlen(const char *s)
+{
+	return ((*s) ? 1 + ft_strlen(s + 1) : 0);
 }
