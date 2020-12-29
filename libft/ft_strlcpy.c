@@ -1,16 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/28 10:33:08 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/28 10:38:47 by hyungjki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-unsigned ft_strlcpy(char *dest, const char* src, unsigned size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-  unsigned i;
+	size_t i;
 
-  i = 0;
-  while (i + 1 < size && src[i] != '\0') {
-    dest[i] = src[i];
-    i++;
-  }
-  dest[i] = '\0';
-  while (src[i] != '\0')
-    i++;
-  return (i);
+	i = 0;
+	while (i + 1 < size && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }

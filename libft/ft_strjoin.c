@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 04:50:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 04:50:46 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 04:52:55 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/29 08:47:48 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	return (' ' <= c && c <= '~');
+	char	*result;
+	int		cur;
+
+	cur = 0;
+	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (result)
+	{
+		while (*s1)
+		{
+			result[cur++] = *s1;
+			s1++;
+		}
+		while (*s2)
+		{
+			result[cur++] = *s2;
+			s2++;
+		}
+		result[cur] = '\0';
+	}
+	return (result);
 }

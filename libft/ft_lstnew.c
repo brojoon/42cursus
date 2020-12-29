@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 04:50:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 04:50:46 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 05:05:36 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/29 03:39:13 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+t_list	*ft_lstnew(void *content)
 {
-	return (' ' <= c && c <= '~');
+	t_list *result;
+
+	result = (t_list *)malloc(sizeof(t_list));
+	if (result)
+	{
+		result->content = content;
+		result->next = NULL;
+	}
+	return (result);
 }

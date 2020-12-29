@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 04:50:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 04:50:46 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 05:14:06 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/29 06:33:59 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	return (' ' <= c && c <= '~');
+	while (lst)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
 }

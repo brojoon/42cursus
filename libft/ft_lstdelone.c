@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 04:50:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 04:50:46 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 05:12:54 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/29 07:56:09 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	return (' ' <= c && c <= '~');
+	if (!lst)
+		return ;
+	(*del)(lst->content);
+	free(lst);
 }

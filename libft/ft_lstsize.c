@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 04:50:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 04:50:46 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 05:06:16 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/29 03:45:43 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+int		ft_lstsize(t_list *lst)
 {
-	return (' ' <= c && c <= '~');
+	return ((lst) ? 1 + ft_lstsize(lst->next) : 0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjki </var/mail/hyungjki>              +#+  +:+       +#+        */
+/*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 05:13:24 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/26 05:13:46 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/29 08:43:02 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	return ((*s) ? 1 + ft_strlen(s + 1) : 0);
 }
