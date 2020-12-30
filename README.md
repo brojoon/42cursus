@@ -7,7 +7,7 @@
 
 ## ⭕️ Common Circle
 | Circle | Project        | Language | Description                 | Status      |
-|:-:|:--------------------|:---------|:---------------------------:|:------------:|
+|:-:|:--------------------|:-------:|:---------------------------:|:------------:|
 | 0 | Libft               |    C    | My very first own C library | Subscribe     |
 | 1 | get_next_line       |         |                             | Unavailable   |
 |   | ft_printf           |         |                             | Unavailable   |
