@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 10:04:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/30 03:22:02 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/31 06:26:07 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*ft_strchr(const char *s, int c)
 			check = 1;
 			break ;
 		}
+		ptr++;
 	}
 	return (check ? NULL : ptr);
 }

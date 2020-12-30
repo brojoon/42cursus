@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:54:42 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 07:26:25 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/31 07:22:41 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ char		*ft_itoa(int n)
 			*(result++) = (n == 0 ? '0' : '-');
 		while (n)
 		{
-			*(result++) = n % 10;
+			*(result++) = n % 10 + '0';
 			n /= 10;
 		}
-		result = '\0';
+		*result = '\0';
 	}
 	return (result);
 }

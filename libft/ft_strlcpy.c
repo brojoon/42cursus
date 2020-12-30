@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 10:33:08 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 10:38:47 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/31 05:54:09 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t i;
 
+	if (!dest || !src)
+		return (0);
 	i = 0;
 	while (i + 1 < size && src[i] != '\0')
 	{
