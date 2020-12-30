@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:01:32 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/29 01:15:13 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/30 06:45:49 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_putendl_fd(char *s, int fd)
 	if (s)
 	{
 		ft_putstr_fd(s, fd);
-		write(fd, '\n', 1);
+		write(fd, "\n", 1);
 	}
 }

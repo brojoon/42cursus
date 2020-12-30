@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:18:27 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/29 02:49:10 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/30 06:42:35 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	{
 		idx = 0;
 		while (idx < ft_strlen(s))
-			result[idx++] = (*f)(idx, s[idx]);
+		{
+			result[idx] = (*f)(idx, s[idx]);
+			idx++;
+		}
 		result[idx] = '\0';
 	}
 	return (result);

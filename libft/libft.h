@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 02:56:11 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/30 04:05:03 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/30 21:02:19 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
 int					ft_isalnum(int c);
-int					ft_isalpha(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
@@ -42,8 +41,9 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 
 void				*ft_memchr(const void *s, int c, size_t n);
-void				*ft_memcmp(const void *s1, const void *s2, size_t n);
+int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
+void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

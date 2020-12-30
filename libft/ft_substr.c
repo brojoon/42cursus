@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:52:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/30 02:43:38 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/30 21:05:29 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*result;
-	size_t	idx;
+	int		idx;
 	size_t	size;
 
 	if (!s)
 		return (NULL);
-	idx = 0;
+	idx = -1;
 	size = ft_strlen(s);
 	if (size <= start)
 	{
@@ -31,9 +31,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	result = (char *)malloc((len + 1));
 	if (result)
 	{
-		while (idx < len)
-			result[idx++] = s[start + idx];
-		return (result[len] = '\0');
+		while (++idx < (int)len)
+			result[idx] = s[(int)start + idx];
+		result[len] = '\0';
+		return (result);
 	}
 	return (result);
 }

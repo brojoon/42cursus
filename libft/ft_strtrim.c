@@ -6,13 +6,13 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:53:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/30 00:48:01 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/31 03:31:59 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	is_set(char c, char const *set)
+static int		is_set(char c, char const *set)
 {
 	while (*set)
 	{
@@ -26,9 +26,9 @@ static size_t	is_set(char c, char const *set)
 char			*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
-	size_t	start;
-	size_t	end;
-	size_t	cur;
+	int		start;
+	int		end;
+	int		cur;
 
 	if (!s1 || !set)
 		return (NULL);
@@ -36,16 +36,16 @@ char			*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1) - 1;
 	while (start <= end && is_set(s1[start], set))
 		start++;
-	while (end >= 0 && is_set(s1[end], set))
+	while (end > 0 && is_set(s1[end], set))
 		end--;
 	result = (char *)malloc(((start > end) ? 0 : end - start + 1) + 1);
 	if (result)
 	{
-		cur = 0;
+		cur = -1;
 		if (start <= end)
 		{
-			while (cur <= end - start)
-				result[cur++] = s1[start + cur];
+			while (++cur <= end - start)
+				result[cur] = s1[start + cur];
 		}
 		result[cur] = '\0';
 	}

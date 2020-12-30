@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 03:48:25 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 04:26:55 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/30 06:35:46 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static	int	is_blank(char a)
 
 int			ft_atoi(const char *str)
 {
-	int	i;
 	int	sign;
 	int	number;
 
