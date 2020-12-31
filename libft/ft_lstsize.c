@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:06:16 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/29 03:45:43 by hyungjki         ###   ########.fr       */
+/*   Updated: 2020/12/31 11:18:41 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		ft_lstsize(t_list *lst)
 {
-	return ((lst) ? 1 + ft_lstsize(lst->next) : 0);
+	return ((lst) ? 1 + ft_lstsize(lst->next) : NULL);
 }
