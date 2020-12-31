@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:01:27 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 04:03:13 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/01 07:40:57 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			ft_putnbr_fd(int n, int fd)
 		write(fd, "0", 1);
 		return ;
 	}
-	number = n;
+	number = (long long)n;
 	idx = 0;
 	if (number < 0)
 	{
