@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:01:27 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 07:40:57 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/01 08:27:45 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			ft_putnbr_fd(int n, int fd)
 {
 	long long	number;
 	char		buf[19];
-	size_t		idx;
+	int			idx;
 
 	if (n == 0)
 	{
