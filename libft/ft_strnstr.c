@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 10:42:15 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 06:18:29 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 07:06:40 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t size)
 	if (*little == '\0')
 		return (char *)big;
 	len = ft_strlen(little);
-	while (*big && size-- >= len)
+	while (*big && (size-- >= len))
 	{
 		if (*big == *little && ft_strncmp(big, little, len) == 0)
 			return (char*)big;
