@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 10:04:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 08:28:20 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/01 16:04:07 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ char	*ft_strchr(const char *s, int c)
 			break ;
 		ptr++;
 	}
-	return (*ptr == '\0' ? NULL : ptr);
+	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
 }
