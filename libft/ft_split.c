@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:54:16 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/30 03:26:49 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/01 18:07:15 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,18 @@ static size_t	init_split(char **result, char const *s, char c)
 	{
 		if (len == 0 && *s != c)
 			sep = (char *)s;
-		if (len && *s == c)
+		if (*s != c)
+		{
+			len++;
+			s++;
+		}
+		if (len && *s == c || s == NULL)
 		{
 			result[cur] = ft_substr(sep, 0, len);
 			if (!(result[cur++]))
 				return (free_strs(result, cur));
 			len = 0;
 		}
-		if (*s != c)
-			len++;
 		s++;
 	}
 	return (0);

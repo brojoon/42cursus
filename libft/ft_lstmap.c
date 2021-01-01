@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:14:58 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 17:33:21 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/01 18:15:53 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,19 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	result = NULL;
 	cur = lst;
-	while (cur)
+	if (lst == NULL || (result = ft_lstnew(f(lst->content))) == NULL)
+		return (0);
+	cur = result;
+	node = lst->next;
+	while (node)
 	{
-		node = ft_lstnew(f(cur->content));
-		if (!node)
-			break ;
-		ft_lstadd_back(&result, node);
+		if ((cur->next = ft_lstnew(f(node->content))) == NULL)
+		{
+			ft_lstclear(&result, del);
+			return (0);
+		}
 		cur = cur->next;
+		node = node->next;
 	}
-	if (ft_lstsize(lst) != ft_lstsize(result))
-		ft_lstclear(&result, del);
 	return (result);
 }
