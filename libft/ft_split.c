@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:54:16 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 02:34:44 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 05:10:01 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,26 @@ static size_t	strslen(const char *s, char c)
 	{
 		if (*s != c)
 		{
-			while (*s != c || *s != '\0')
+			while (*s != c && *s != '\0')
 			{
 				s++;
 				result++;
 			}
 		}
 		else
+		{
 			s++;
+		}
 	}
 	return (result);
 }
 
 static size_t	free_strs(char **result, size_t cur)
 {
-	size_t		idx;
+	int		idx;
 
 	idx = -1;
-	while (++idx < cur)
+	while (++idx < (int)cur)
 	{
 		free(result[idx]);
 		result[idx] = NULL;
