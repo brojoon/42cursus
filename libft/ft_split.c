@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:54:16 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 05:10:01 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 05:43:58 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ static size_t	strslen(const char *s, char c)
 			}
 		}
 		else
-		{
 			s++;
-		}
 	}
 	return (result);
 }
@@ -61,14 +59,16 @@ static size_t	init_split(char **result, const char *s, char c, size_t len)
 		count = 0;
 		if (s[i] != c)
 		{
-			while (s[i + count] != c && s[i + count])
+			while (s[i + count] != c && s[i + count] != '\0')
 				count++;
 			result[cur] = ft_substr(s, i, count);
 			if (!result[cur])
 				return (free_strs(result, cur));
 			cur++;
+			i += count;
 		}
-		i += 1 + count;
+		else
+			s++;
 	}
 	return (0);
 }
@@ -83,7 +83,7 @@ char			**ft_split(char const *s, char c)
 	len = strslen(s, c);
 	result = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!result)
-		return (0);
+		return (NULL);
 	if (init_split(result, s, c, len))
 	{
 		free(result);
