@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:54:16 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 18:07:15 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 01:03:02 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,36 @@ static size_t	free_strs(char **result, size_t cur)
 {
 	size_t		idx;
 
-	idx = 0;
-	while (idx < cur)
-		free(result[idx++]);
+	idx = -1;
+	while (++idx < cur)
+	{
+		free(result[idx]);
+		result[idx] = NULL;
+	}
 	return (1);
 }
 
-static size_t	init_split(char **result, char const *s, char c)
+static size_t	init_split(char **result, const char *s, char c, size_t len)
 {
-	size_t		cur;
-	size_t		len;
-	char		*sep;
+	size_t	cur;
+	size_t	count;
+	size_t	i;
 
 	cur = 0;
 	len = 0;
-	while (*s)
+	while (s[i] && i < len)
 	{
-		if (len == 0 && *s != c)
-			sep = (char *)s;
-		if (*s != c)
+		count = 0;
+		if (s[i] != c)
 		{
-			len++;
-			s++;
-		}
-		if (len && *s == c || s == NULL)
-		{
-			result[cur] = ft_substr(sep, 0, len);
-			if (!(result[cur++]))
+			while (s[i + count] != c && s[i + count])
+				count++;
+			result[cur] = ft_substr(s, i, count);
+			if (!result[cur])
 				return (free_strs(result, cur));
-			len = 0;
+			cur++;
 		}
-		s++;
+		i += 1 + count;
 	}
 	return (0);
 }
@@ -77,14 +76,20 @@ static size_t	init_split(char **result, char const *s, char c)
 char			**ft_split(char const *s, char c)
 {
 	char	**result;
+	size_t	len;
 
 	if (!s)
 		return (NULL);
-	result = (char **)malloc(sizeof(char **) * (strslen(s, c) + 1));
-	if (result && init_split(result, s, c))
+	len = strslen(s, c);
+	result = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!result)
+		return (0);
+	if (init_split(result, s, c, len))
 	{
 		free(result);
 		result = NULL;
+		return (result);
 	}
+	result[len] = 0;
 	return (result);
 }
