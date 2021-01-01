@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 03:48:25 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 18:40:52 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 01:41:06 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int			ft_atoi(const char *str)
 		number = number * 10 + *str - '0';
 		str++;
 	}
-	return ((int)number * sign);
+	return (sign == 1 ? number : -number);
 }

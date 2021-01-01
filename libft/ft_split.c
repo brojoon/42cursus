@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:54:16 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 01:03:02 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 02:34:44 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,21 @@
 static size_t	strslen(const char *s, char c)
 {
 	size_t		result;
-	size_t		flag;
 
 	result = 0;
-	flag = 0;
 	while (*s)
 	{
-		if (!(flag) && *s != c)
-			flag = 1;
-		if (flag && *s == c)
+		if (*s != c)
 		{
-			result++;
-			flag = 0;
+			while (*s != c || *s != '\0')
+			{
+				s++;
+				result++;
+			}
 		}
-		s++;
+		else
+			s++;
 	}
-	if (flag)
-		result++;
 	return (result);
 }
 
@@ -55,8 +53,8 @@ static size_t	init_split(char **result, const char *s, char c, size_t len)
 	size_t	i;
 
 	cur = 0;
-	len = 0;
-	while (s[i] && i < len)
+	i = 0;
+	while (s[i] && cur < len)
 	{
 		count = 0;
 		if (s[i] != c)
@@ -90,6 +88,6 @@ char			**ft_split(char const *s, char c)
 		result = NULL;
 		return (result);
 	}
-	result[len] = 0;
+	result[len] = NULL;
 	return (result);
 }
