@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 21:10:38 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/03 00:18:13 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 00:24:48 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 		return (src_len);
 	if (dest_len + 1 < destsize)
 	{
-		dest + dest_len - 1;
+		dest = (dest - 1) + dest_len;
 		cur = 0;
 		while ((cur < destsize - dest_len - 1) && src[cur])
 		{
