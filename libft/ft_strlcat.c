@@ -5,37 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 10:26:01 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 17:25:08 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/02 21:10:38 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/02 21:10:43 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlcat(char *dest, const char *src, size_t size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t i;
 	size_t j;
-	size_t k;
+	size_t src_len;
 	size_t m;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	while (src[k])
-		k++;
+	src_len = strlen(src);
 	if (size == 0)
-		return (k);
+		return (src_len);
 	while (dest[i] && i < size)
 		i++;
 	m = i;
-	if (i < size)
-	{
-		while (i < (size - 1) && src[j])
-			dest[i++] = src[j++];
-		dest[i] = '\0';
-	}
+	while (i < (size - 1) && src[j])
+		dest[i++] = src[j++];
+	dest[i] = '\0';
 	if (size - 1 < m)
-		return (size + k);
-	return (k + m);
+		return (size + src_len);
+	return (src_len + m);
 }

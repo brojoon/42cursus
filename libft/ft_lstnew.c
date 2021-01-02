@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 18:18:10 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 18:18:19 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 19:50:17 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_list		*ft_lstnew(void *content)
 {
-	t_list *el;
+	t_list *result;
 
-	if (!(el = malloc(sizeof(t_list))))
+	if (!(result = malloc(sizeof(t_list))))
 		return (NULL);
-	el->content = content;
-	el->next = NULL;
-	return (el);
+	result->content = content;
+	result->next = NULL;
+	return (result);
 }
