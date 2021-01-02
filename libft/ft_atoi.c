@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 03:48:25 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 16:53:19 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 17:23:34 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@ static	int	is_blank(char a)
 	|| a == '\r' || a == '\n' || a == ' ');
 }
 
-int			ft_atoi(const char *ptr)
+int			ft_atoi(const char *str)
 {
 	unsigned long long	number;
 	unsigned char		*ptr;
 	int					sign;
-	int					num;
 
 	number = 0;
 	sign = 1;
-	ptr = (char *)ptr;
+	ptr = (unsigned char *)str;
 	while (is_blank(*ptr))
 		ptr++;
 	while (*ptr == '-' || *ptr == '+')
