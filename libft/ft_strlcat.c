@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 21:10:38 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/03 00:41:34 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 00:51:28 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 		*dest = '\0';
 	}
 	if (src_len > destsize)
-		return (src_len + destsize);
-	return (src_len + src_len);
+		return (destsize + dest_len);
+	return (src_len + dest_len);
 }
