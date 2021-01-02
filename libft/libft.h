@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 02:56:11 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 18:00:26 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 23:59:24 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
-size_t				ft_strlcat(char *dest, const char *src, size_t size);
+size_t				ft_strlcat(char *dest, const char *src, size_t destsize);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 char				*ft_strchr(const char *s, int c);

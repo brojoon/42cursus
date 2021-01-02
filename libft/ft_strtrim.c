@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:53:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 23:29:41 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 00:18:08 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1) - 1;
 	while (s1[end] && is_set(s1[end], set))
 		end--;
-	if (start >= end || !(result = malloc(end - start + 2)))
+	if (!(result = (char *)malloc(((start > end) ? 0 : end - start + 1) + 1)))
 		return (0);
 	i = 0;
 	while (start <= end)
