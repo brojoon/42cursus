@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:53:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/03 00:46:52 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 02:47:34 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;
 	int		end;
-	int		locate;
+	int		cur;
 	char	*result;
 
 	if (!s1 || !set)
@@ -35,19 +35,19 @@ char			*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	while (start < (int)ft_strlen(s1) && is_set(s1[start], set))
 		start++;
-	end = ft_strlen(s1) - 1;
+	end = (int)ft_strlen(s1) - 1;
 	while (end >= 0 && is_set(s1[end], set))
 		end--;
 	result = (char *)malloc(((start > end) ? 0 : end - start + 1) + 1);
 	if (result)
 	{
-		locate = -1;
+		cur = -1;
 		if (start <= end)
 		{
-			while (++locate <= end - start)
-				result[locate] = s1[start + locate];
+			while (++cur <= end - start)
+				result[cur] = s1[start + cur];
 		}
-		result[((locate == -1) ? 0 : locate)] = '\0';
+		result[((cur == -1) ? 0 : cur)] = '\0';
 	}
 	return (result);
 }
