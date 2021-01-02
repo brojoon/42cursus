@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 05:10:59 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 18:03:14 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/02 18:18:02 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/02 18:18:24 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list		*ft_lstlast(t_list *lst)
 {
 	if (lst)
 		while (lst->next)
