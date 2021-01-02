@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:53:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 21:10:15 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 21:14:16 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1 || !set)
 		return (0);
+	start++;
 	while (s1[start] && is_set(s1[start], set))
 		start++;
 	end = ft_strlen(s1) - 1;
