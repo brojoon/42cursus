@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 02:56:07 by hyungjki          #+#    #+#              #
-#    Updated: 2020/12/30 19:01:36 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/01/02 15:32:37 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,23 +28,26 @@ OBJS		= $(SRCS:%.c=%.o)
 
 BOBJS	= $(BSRCS:%.c=%.o)
 
-FLAGS		= -Wall -Werror -Wextra
+CC = gcc
+CLAGS		= -Wall -Werror -Wextra
+AR = ar rcs
+RM = rm -f
 
 $(NAME):
-	gcc $(FLAGS) -c $(SRCS) -I ./
-	ar rcs $(NAME) $(OBJS)
+	$(CC) $(CLAGS) -c $(SRCS) -I ./
+	$(AR) $(NAME) $(OBJS)
 
 all: $(NAME)
 
 bonus: $(NAME)
-	gcc $(FLAGS) -c $(BSRCS) -I ./
-	ar rcs $(NAME) $(BOBJS)
+	$(CC) $(CLAGS) -c $(BSRCS) -I ./
+	$(AR) $(NAME) $(BOBJS)
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	$(RM) $(OBJS) $(BOBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
