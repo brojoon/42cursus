@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 07:51:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/03 00:39:34 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 00:47:48 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		if (*ptr1 != *ptr2)
 			return (ptr1 - ptr2);
 		ptr1++;
-		ptr2++;	
+		ptr2++;
 	}
 	return (0);
 }
