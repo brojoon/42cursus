@@ -6,48 +6,36 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:53:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/31 03:31:59 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:58:08 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		is_set(char c, char const *set)
-{
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
-}
-
 char			*ft_strtrim(char const *s1, char const *set)
 {
-	char	*result;
+	int		i;
+	int		j;
 	int		start;
-	int		end;
-	int		cur;
+	char	*pt;
 
+	i = 0;
+	j = 0;
 	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	end = ft_strlen(s1) - 1;
-	while (start <= end && is_set(s1[start], set))
-		start++;
-	while (end > 0 && is_set(s1[end], set))
-		end--;
-	result = (char *)malloc(((start > end) ? 0 : end - start + 1) + 1);
-	if (result)
-	{
-		cur = -1;
-		if (start <= end)
-		{
-			while (++cur <= end - start)
-				result[cur] = s1[start + cur];
-		}
-		result[cur] = '\0';
-	}
-	return (result);
+		return (0);
+	while (set[i] && s1[j])
+		if (s1[j] == set[i++])
+			i = 0 * j++;
+	start = j;
+	while (s1[j] && s1[j + 1])
+		i = 0 * j++;
+	while (set[i] && s1[j])
+		if (s1[j] == set[i++])
+			i = 0 * j--;
+	if (!(i *= 0) && !(pt = malloc((j - start + 2) * sizeof(char))))
+		return (0);
+	while (start <= j)
+		pt[i++] = s1[start++];
+	pt[i] = '\0';
+	return (pt);
 }

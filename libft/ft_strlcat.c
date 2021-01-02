@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 10:26:01 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/28 10:32:52 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 17:14:44 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,26 @@ size_t		ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t i;
 	size_t j;
+	size_t k;
+	size_t m;
 
 	i = 0;
 	j = 0;
-	while (dest[i] != '\0')
+	k = 0;
+	while (src[k])
+		k++;
+	if (size == 0)
+		return (k);
+	while (dest[i] && i < size)
 		i++;
-	while (i + j + 1 < size && src[j])
+	m = i;
+	if (i < size)
 	{
-		dest[i + j] = src[j];
-		j++;
+		while (i < (size - 1) && src[j])
+			dest[i++] = src[j++];
+		dest[i] = '\0';
 	}
-	dest[i + j] = '\0';
-	while (src[j] != '\0')
-		j++;
-	if (i > size)
-		return (size + j);
-	return (i + j);
+	if (size - 1 < 1)
+		return (size + k);
+	return (k + 1);
 }

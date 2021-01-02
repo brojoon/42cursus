@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:11:52 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/29 08:07:57 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 17:06:35 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (!(*lst))
-	{
+	t_list		*tmp;
+
+	tmp = ft_lstlast(*lst);
+	if (tmp)
+		tmp->next = new;
+	else
 		*lst = new;
-		return ;
-	}
-	while ((*lst)->next)
-		*lst = (*lst)->next;
-	(*lst)->next = new;
 }

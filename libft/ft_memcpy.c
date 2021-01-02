@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 08:02:58 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/01 04:09:00 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 17:15:15 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
 	unsigned char	*result;
+	unsigned char	*tmp;
 
 	if (!dst && !src)
 		return (dst);
 	result = (unsigned char *)dst;
+	tmp = (unsigned char*)src;
 	while (len--)
-	{
-		(*(result++)) = (*((unsigned char *)src));
-		src++;
-	}
+		*result++ = *tmp++;
 	return (dst);
 }
