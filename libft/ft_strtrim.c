@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 04:53:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/03 00:18:08 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 00:46:52 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,29 @@ static int		is_set(char c, char const *set)
 
 char			*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		end;
 	int		start;
+	int		end;
+	int		locate;
 	char	*result;
 
 	if (!s1 || !set)
-		return (0);
+		return (NULL);
 	start = 0;
-	while (s1[start] && is_set(s1[start], set))
+	while (start < (int)ft_strlen(s1) && is_set(s1[start], set))
 		start++;
 	end = ft_strlen(s1) - 1;
-	while (s1[end] && is_set(s1[end], set))
+	while (end >= 0 && is_set(s1[end], set))
 		end--;
-	if (!(result = (char *)malloc(((start > end) ? 0 : end - start + 1) + 1)))
-		return (0);
-	i = 0;
-	while (start <= end)
-		result[i++] = s1[start++];
-	result[i] = '\0';
+	result = (char *)malloc(((start > end) ? 0 : end - start + 1) + 1);
+	if (result)
+	{
+		locate = -1;
+		if (start <= end)
+		{
+			while (++locate <= end - start)
+				result[locate] = s1[start + locate];
+		}
+		result[((locate == -1) ? 0 : locate)] = '\0';
+	}
 	return (result);
 }
