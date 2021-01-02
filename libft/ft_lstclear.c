@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 05:13:18 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 17:02:54 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/02 17:39:20 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*cur;
 	t_list	*next;
 
-	cur = *lst;
+	next = *lst;
 	while (cur)
 	{
 		cur = next;
