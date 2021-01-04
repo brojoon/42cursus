@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 18:17:55 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/02 19:49:50 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/03 05:39:41 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 	{
 		del(lst->content);
 		free(lst);
+		lst = NULL;
 	}
 }
