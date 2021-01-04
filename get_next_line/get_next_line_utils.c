@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 07:06:50 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/05 04:11:00 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/05 04:23:16 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	char		*result;
 
 	if (!s1 || !s2)
-		return 0;
+		return (0);
 	result = (char *)malloc(sizeof(ft_strlen(s1)) + sizeof(ft_strlen(s2)) + 1);
 	if (result)
 	{
@@ -49,6 +49,7 @@ char		*ft_strchar(char const *s, int c)
 {
 	int		i;
 	char	*result;
+
 	i = -1;
 	result = (char *)s;
 	while (result[++i])
