@@ -2,9 +2,6 @@
 
 ## 42cursus
 
-[![hyungjki's 42 stats](https://badge42.herokuapp.com/api/stats/hyungjki)](https://profile.intra.42.fr/users/hyungjki)
-
-
 ## ⭕️ Common Circle
 | Circle | Project        | Language | Description                 | Status      |
 |:-:|:--------------------|:-------:|:---------------------------:|:------------:|
