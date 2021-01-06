@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 03:27:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/07 04:44:04 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/07 07:37:55 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,4 @@ char	*ft_strchr(const char *s, int c)
 		ptr++;
 	}
 	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
-}
-
-
-char	*ft_strpush(char *s, int push)
-{
-	int	locate;
-
-	locate = 0;
-	while (s[locate + push])
-	{
-		s[locate] = s[locate + push];
-		locate++;
-	}
-	while (s[locate])
-		s[locate++] = '\0';
-	return (s);
 }
