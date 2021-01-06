@@ -5,16 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/03 07:06:50 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/05 04:23:16 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/06 03:27:09 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/07 04:44:04 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "get_next_line.h"
 
-size_t		ft_strlen(const char *s)
+char	*ft_strdup(void)
 {
-	size_t	i;
+	char	*result;
+
+	result = (char *)malloc(1);
+	*result = '\0';
+	return (result);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t i;
 
 	i = 0;
 	while (s[i])
@@ -22,40 +32,57 @@ size_t		ft_strlen(const char *s)
 	return (i);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
-{
-	int			i;
-	int			j;
-	char		*result;
 
-	if (!s1 || !s2)
-		return (0);
-	result = (char *)malloc(sizeof(ft_strlen(s1)) + sizeof(ft_strlen(s2)) + 1);
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*result;
+	int		cur;
+
+	cur = 0;
+	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (result)
 	{
-		i = -1;
-		while (s1[++i])
-			result[i] = s1[i];
-		j = i;
-		i = -1;
-		while (s2[++i])
-			result[j + i] = s2[i];
-		result[j + i] = '\0';
+		while (*s1)
+		{
+			result[cur++] = *s1;
+			s1++;
+		}
+		while (*s2)
+		{
+			result[cur++] = *s2;
+			s2++;
+		}
+		result[cur] = '\0';
 	}
 	return (result);
 }
 
-char		*ft_strchar(char const *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	*result;
+	char	*ptr;
 
-	i = -1;
-	result = (char *)s;
-	while (result[++i])
+	ptr = (char *)s;
+	while (*ptr)
 	{
-		if (result[i] == c)
-			return (result + i);
+		if (*ptr == c)
+			break ;
+		ptr++;
 	}
-	return (0);
+	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
+}
+
+
+char	*ft_strpush(char *s, int push)
+{
+	int	locate;
+
+	locate = 0;
+	while (s[locate + push])
+	{
+		s[locate] = s[locate + push];
+		locate++;
+	}
+	while (s[locate])
+		s[locate++] = '\0';
+	return (s);
 }

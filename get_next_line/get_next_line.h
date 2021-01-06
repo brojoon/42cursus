@@ -5,29 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/03 07:15:13 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/05 04:23:39 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/06 03:27:07 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/07 04:59:17 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
+#  define BUFFER_SIZE 1
 # endif
-# define FD_MAX 123456
+
+# define FD_MAX 1024
 # define READ 1
-# define EOF 0
+# define END 0
 # define ERROR -1
 
-int			get_next_line(int fd, char **line);
-size_t		ft_strlen(const char *s);
-char		*ft_strjoin(char const *s1, char const *s2);
-char		*ft_strchar(char const *s, int c);
+
+int		get_next_line(int fd, char **line);
+char	*ft_strdup(void);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strpush(char *s, int push);
 
 #endif
