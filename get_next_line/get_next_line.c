@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 16:22:58 by sunpark           #+#    #+#             */
-/*   Updated: 2021/01/07 06:46:32 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/07 08:08:39 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	catch_read(char **line, char **memo)
 	len = 0;
 	while ((*memo)[len] && (*memo)[len] != '\n')
 		len++;
-	*line = (char *)malloc(len + 1);
+	if (!(*line = (char *)malloc(len + 1)))
+		return (catch_error(memo));
 	cur = -1;
 	while (++cur < len)
 		(*line)[cur] = (*memo)[cur];
@@ -58,7 +59,7 @@ int	catch_read(char **line, char **memo)
 
 int	get_next_line(int fd, char **line)
 {
-	long long	len;
+	ssize_t		len;
 	char		buff[BUFFER_SIZE + 1];
 	static char	*memo[FD_MAX];
 	char		*tmp;
@@ -69,7 +70,7 @@ int	get_next_line(int fd, char **line)
 	if (!memo[fd])
 		memo[fd] = ft_strdup();
 	len = 0;
-	while (!(ft_strchr(memo[fd], '\n')) && \
+	while ( memo[fd] && (!(ft_strchr(memo[fd], '\n'))) && \
 			((len = read(fd, buff, BUFFER_SIZE)) > 0))
 	{
 		buff[len] = '\0';
