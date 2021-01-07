@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 06:40:27 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/08 06:40:29 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/08 06:40:13 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/08 06:40:16 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	catch_error(char **memo)
 {
