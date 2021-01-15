@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 10:04:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/06 03:18:26 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 04:52:09 by hyungjki          #+#    #+#             */
+/*   Updated: 2020/12/30 21:05:29 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ptr;
+	char	*result;
+	int		idx;
+	size_t	size;
 
-	ptr = (char *)s;
-	while (*ptr)
+	if (!s)
+		return (NULL);
+	idx = -1;
+	size = ft_strlen(s);
+	if (size <= start)
 	{
-		if (*ptr == c)
-			break ;
-		ptr++;
+		result = (char *)malloc(1);
+		*result = '\0';
+		return (result);
 	}
-	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
+	result = (char *)malloc((len + 1));
+	if (result)
+	{
+		while (++idx < (int)len)
+			result[idx] = s[(int)start + idx];
+		result[len] = '\0';
+		return (result);
+	}
+	return (result);
 }

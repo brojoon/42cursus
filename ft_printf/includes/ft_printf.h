@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 10:04:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/06 03:18:26 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/07 08:46:49 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/09 00:54:48 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-char	*ft_strchr(const char *s, int c)
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+
+# define TRUE 1
+# define FALSE 0
+
+typedef struct s_flag
 {
-	char	*ptr;
+	int		sign;
+	int		sort;
+	int		width;
+	int		precision;
+}				t_flag;
 
-	ptr = (char *)s;
-	while (*ptr)
-	{
-		if (*ptr == c)
-			break ;
-		ptr++;
-	}
-	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
-}
+int				ft_printf(const char *format, ...);
+int				print_control(const char **format, va_list ap);
+
+#endif

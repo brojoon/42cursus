@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 10:04:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/06 03:18:26 by hyungjki         ###   ########.fr       */
+/*   Created: 2020/12/28 04:52:55 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/06 03:05:19 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*ptr;
+	char	*result;
+	int		cur;
 
-	ptr = (char *)s;
-	while (*ptr)
+	cur = 0;
+	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (result)
 	{
-		if (*ptr == c)
-			break ;
-		ptr++;
+		while (*s1)
+		{
+			result[cur++] = *s1;
+			s1++;
+		}
+		while (*s2)
+		{
+			result[cur++] = *s2;
+			s2++;
+		}
+		result[cur] = '\0';
 	}
-	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
+	return (result);
 }

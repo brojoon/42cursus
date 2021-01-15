@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 10:04:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/06 03:18:26 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/09 00:52:02 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/01/09 02:56:49 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int		ft_printf(const char *format, ...)
 {
-	char	*ptr;
+	va_list ap;
+	int		cnt;
 
-	ptr = (char *)s;
-	while (*ptr)
+	va_start(ap, format);
+	cnt = 0;
+	while(*format)
 	{
-		if (*ptr == c)
-			break ;
-		ptr++;
+		if (*format == '%')
+			cnt += print_control(&format, ap);
+		else
+		{
+			write(1, *(format++), 1);
+			cnt++;
+		}
 	}
-	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
+	va_end(ap);
+	return (cnt);
 }
