@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 08:46:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/09 00:54:48 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:02:45 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <libft.h>
 
 # define TRUE 1
 # define FALSE 0
