@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:16:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 06:39:49 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/21 07:43:37 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		get_num_len(int n)
 {
-	return ((-10 < n && n < 10) ? 1 : 1 + numlen(n / 10));
+	return ((-10 < n && n < 10) ? 1 : 1 + get_num_len(n / 10));
 }
 
 void	print_uint_num(t_option *ot, unsigned int n)
@@ -55,10 +55,10 @@ int		print_int(va_list ap, t_option *ot)
 		ft_putchar_fd('-', 1);
 	while (len > get_num_len(num) && (len--))
 		ft_putchar_fd('0', 1);
-	print_uint((num < 0) ? -1 * num : num, ot);
+	print_uint_num(ot, (num < 0) ? -1 * num : num);
 	len = ((ot->precision > len) ? ot->precision : len);
 	if (ot->sort == LEFT)
-		cnt += print_sort(ot, len + ((num < 0) ? 1 : 0));
+		cnt += print_width(ot, len + ((num < 0) ? 1 : 0));
 	return (cnt - ((num || ot->precision || ot->width ) ? 0 : 1));
 }
 
@@ -70,19 +70,18 @@ int		print_uint(va_list ap, t_option *ot)
 	int				ulen;
 	
 	num = va_arg(ap, unsigned int);
-	ot->sort = (num < 0 && ot->sort == RIGHT && ot->precision != FALSE) ? FALSE : ot->sort;
 	ulen = (num >= 1000000000) ? 10 : get_num_len(num); 
 	len = ((ot->precision > ulen) ? ot->precision : ulen);
-	cnt += len;
+	cnt = len;
 	if (ot->sort != LEFT)
 	{
 		if (ot->precision != FALSE)
 			ot->sort = FALSE;
-		cnt += print_sort(ot, len);
+		cnt += print_width(ot, len);
 	}
 	while (len > get_num_len((int)num) && (len--))
 		ft_putchar_fd('0', 1);
-	print_uint(num, ot);
+	print_uint_num(ot, num);
 	len = ((ot->precision > len) ? ot->precision : len);
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len);

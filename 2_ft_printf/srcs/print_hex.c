@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:24 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 06:42:07 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/21 07:35:22 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int				get_hex_len(unsigned int n)
 {
-	return ((n < 16) ? 1 : 1 + hex_len(n / 16));
+	return ((n < 16) ? 1 : 1 + get_hex_len(n / 16));
 }
 
 unsigned int	get_hex_pow(int n)
 {
-	return ((n == 0) ? 1 : hex_pow(n - 1) * 16);
+	return ((n == 0) ? 1 : get_hex_pow(n - 1) * 16);
 }
 
 void			prinit_hex_num(t_option *ot, unsigned int hex_num, int is_alpha)

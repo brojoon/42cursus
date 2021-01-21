@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 06:45:17 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/21 07:34:46 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int		print_case(const char **format, va_list ap, t_option *ot)
 int		print_control(const char **format, va_list ap)
 {
 	int		cnt;
-	int		statep;
 	int		state;
 	t_option ot;
 

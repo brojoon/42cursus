@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 02:56:21 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/20 00:28:02 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/21 08:28:10 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				*ft_calloc(size_t count, size_t size);
 
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl_fd(char *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
+void				ft_putnbr_fd(unsigned int n, int fd);
 void				ft_putstr_fd(char *s, int fd);
 
 typedef struct		s_list

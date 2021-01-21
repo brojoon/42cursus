@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 02:56:08 by hyungjki          #+#    #+#              #
-#    Updated: 2021/01/21 06:24:46 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/01/21 10:53:42 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,13 @@ SRC = ft_printf.c print_utils.c print_control.c print_hex.c \
 
 SRCDIR = ./srcs/
 
-LIBFTDIR = ./libft
+LIBFTDIR = ./libft/
 
 INCDIR = includes
 
 LIBFT = libft.a
+
+LIBPOS = $(addprefix $(LIBFTDIR), $(LIBFT))
 
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
@@ -32,17 +34,22 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(LIBPOS) $(OBJS)
+
+$(LIBFT):
+	cd $(LIBFTDIR) && make
 	
 $(OBJS): %.o: %.c
-	$(CC) $(CFLAGS) -c $< -I $(INCDIR)
+	$(CC) $(CFLAGS) -o $@ -c $< -I $(INCDIR)
 	
 clean:
 	rm -rf $(OBJS)
+	cd $(LIBFTDIR) && make clean
 
 fclean: clean
 	rm -rf $(NAME)
+	cd $(LIBFTDIR) && rm -rf $(LIBFT)
 	
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:31 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 06:37:49 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/21 07:44:37 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int					get_long_hex_len(unsigned long long print)
 
 unsigned long long	get_long_hex_pow(int n)
 {
-	return ((n == 0) ? 1 : long_hex_pow(n - 1) * 16);
+	return ((n == 0) ? 1 : get_long_hex_pow(n - 1) * 16);
 }
 
 int					add_width_two(t_option *ot, int len)
@@ -38,7 +38,7 @@ void				print_long_hex_num(t_option *ot, unsigned long long hex_num)
 	hex_len = get_long_hex_len(hex_num);
 	while (hex_len--)
 	{
-		front_hex = hex_num / long_hex_pow(hex_len) % 16;
+		front_hex = hex_num / get_long_hex_pow(hex_len) % 16;
 		if (front_hex < 10)
 			ft_putchar_fd('0' + front_hex, 1);
 		else
@@ -65,7 +65,7 @@ int					print_pointer(va_list ap, t_option *ot)
 	if (ot->sort != LEFT)
 		add_width_two(ot, len);
 	ft_putstr_fd("0x", 1);
-	while (len > plen & (len--))
+	while (len > plen && (len--))
 		ft_putchar_fd('0', 1);
 	print_long_hex_num(ot, hex_num);
 	len = ((ot->precision > len) ? ot->precision : len);	
