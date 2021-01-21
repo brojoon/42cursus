@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 02:56:08 by hyungjki          #+#    #+#              #
-#    Updated: 2021/01/21 10:54:57 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/01/22 02:28:00 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(LIBPOS) $(OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 $(LIBFT):
 	cd $(LIBFTDIR) && make

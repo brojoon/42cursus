@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 07:34:46 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/22 01:34:03 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int		print_control(const char **format, va_list ap)
 
 	memset(&ot, 0, sizeof(t_option));
 	state = 0;
+	cnt = 0;
 	(*format)++;
 	while (**format)
 	{
