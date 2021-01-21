@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 02:56:08 by hyungjki          #+#    #+#              #
-#    Updated: 2021/01/21 08:31:25 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/01/22 03:02:32 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ ifdef WITH_BONUS
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS_BONUS)
 else
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	ranlib $(NAME)
 endif
 $(OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -c $<
