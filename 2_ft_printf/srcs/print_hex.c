@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:24 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 07:35:22 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/23 07:10:14 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			prinit_hex_num(t_option *ot, unsigned int hex_num, int is_alpha)
 	int		hex_len;
 	int		front_hex;
 
-	if (hex_num == 0 && ot->precision == 0)
+	if (hex_num == 0 && ot->precision == FALSE)
 	{
 		if (ot->width)
 			ft_putchar_fd(' ', 1);
@@ -57,7 +57,7 @@ int				print_hex(va_list ap, t_option *ot, int is_alpha)
 	cnt = len;
 	if (ot->sort != LEFT)
 	{
-		if (ot->precision != FALSE)
+		if (ot->precision != DISABLE)
 			ot->sort = FALSE;
 		cnt += print_width(ot, len);
 	}

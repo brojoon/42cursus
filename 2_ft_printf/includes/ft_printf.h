@@ -14,6 +14,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# define DISABLE -1
 # define TRUE 1
 # define FALSE 0
 # define RIGHT 10
@@ -26,6 +27,7 @@
 # define PRINT 80
 
 # include <stdarg.h>
+# include <stdio.h>
 # include "libft.h"
 
 typedef struct s_option
@@ -60,6 +62,7 @@ int					print_percent(t_option *ot);
 int					print_string(va_list ap, t_option *ot);
 int					print_char(va_list ap, t_option *ot);
 int					print_width(t_option *ot, int len);
+void				clear_ot(t_option *ot);
 
 
 

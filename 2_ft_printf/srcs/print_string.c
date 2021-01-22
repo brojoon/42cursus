@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:32:36 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 06:32:29 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/23 07:14:24 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ int		print_string(va_list ap, t_option *ot)
 	int		len;
 	int		idx;
 	char	*str1;
-
+	
 	str1 = (char *)va_arg(ap, char *);
 	if (str1 == NULL)
 		str1 = "(null)";
 	len = ft_strlen(str1);
-	if (ot->precision != FALSE)
+	cnt = 0;
+	if (ot->precision != DISABLE)
 		len = (len > ot->precision) ? ot->precision : len;
 	if (ot->sort != LEFT)
-		cnt = print_width(ot, len);
+		cnt += print_width(ot, len);
 	idx = - 1;
-	while (idx < len)
-		ft_putchar_fd(str1[cnt], 1);
+	while (++idx < len)
+		ft_putchar_fd(str1[idx], 1);
 	cnt += len;
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len); 

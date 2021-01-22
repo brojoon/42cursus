@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/22 01:34:03 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/23 07:26:39 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ int		set_width(const char **format, va_list ap)
 	int cnt;
 	
 	if (**format == '*')
+	{
+		++(*format);
 		return(va_arg(ap, int));
+	}
 	while (**format == '0')
 		++(*format);
 	cnt = ft_atoi(*format);
 	while (ft_isdigit(**format))
 		++(*format);
-	--(*format);
 	return (cnt);
 }
 
@@ -44,9 +46,15 @@ int		find_case(char c)
 void	add_option(const char **format, va_list ap, t_option *ot)
 {
 	if (**format == '-')
+	{
 		ot->sort = LEFT;
+		(*format)++;
+	}
 	else if (**format == '0' && ot->sort != LEFT)
+	{
 		ot->sort = RIGHT;
+		(*format)++;	
+	}
 	else if (**format == '*' || ft_isdigit(**format))
 	{
 		ot->width = set_width(format, ap);
@@ -60,13 +68,12 @@ void	add_option(const char **format, va_list ap, t_option *ot)
 	{
 		++(*format);
 		if (**format == '*' || ft_isdigit(**format))
-		ot->precision = set_width(format, ap);
+			ot->precision = set_width(format, ap);
 		else
-			ot->precision = TRUE;
-		if (ot->precision < 0)
 			ot->precision = FALSE;
+		if (ot->precision < 0)
+			ot->precision = DISABLE;
 	}
-	(*format)++;
 }
 
 int		print_case(const char **format, va_list ap, t_option *ot)
@@ -88,6 +95,7 @@ int		print_case(const char **format, va_list ap, t_option *ot)
 		cnt = print_pointer(ap, ot);
 	else if (**format == '%')
 		cnt = print_percent(ot);
+	(*format)++;
 	return (cnt);
 }
 
@@ -97,20 +105,21 @@ int		print_control(const char **format, va_list ap)
 	int		state;
 	t_option ot;
 
-	memset(&ot, 0, sizeof(t_option));
+	clear_ot(&ot);
 	state = 0;
 	cnt = 0;
 	(*format)++;
 	while (**format)
 	{
 		if (!(find_case(**format)))
-			break;
+			break ;
 		if (state > find_case(**format))
-			memset(&ot, 0, sizeof(t_option));
+			clear_ot(&ot);
 		state = find_case(**format);
 		if (state == PRINT)
 		{
 			cnt += print_case(format, ap, &ot);
+			break ;
 		}
 		else
 			add_option(format, ap, &ot);

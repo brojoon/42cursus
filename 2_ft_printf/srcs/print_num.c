@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:16:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/21 07:43:37 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/23 07:27:07 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		get_num_len(int n)
 
 void	print_uint_num(t_option *ot, unsigned int n)
 {
-	if (n == 0 && ot->precision == 0)
+	if (n == 0 && ot->precision == FALSE)
 	{
 		if (ot->width)
 			ft_putchar_fd(' ', 1);
@@ -32,7 +32,7 @@ int		right_sort(t_option *ot, int num, int len)
 {
 	if (ot->sort == RIGHT && num < 0)
 		ft_putchar_fd('-', 1);
-	if (ot->precision != FALSE)
+	if (ot->precision != DISABLE)
 		ot->sort = FALSE;
 	return (print_width(ot, len + ((num < 0 ) ? 1 : 0)));
 }
@@ -44,7 +44,7 @@ int		print_int(va_list ap, t_option *ot)
 	int		len;
 	
 	num = va_arg(ap, int);
-	ot->sort = (num < 0 && ot->sort == RIGHT && ot->precision != FALSE) ? FALSE : ot->sort;
+	ot->sort = (num < 0 && ot->sort == RIGHT && ot->precision != DISABLE) ? FALSE : ot->sort;
 	cnt = (num < 0) ? 1 : 0;
 	len = get_num_len(num);
 	len = ((ot->precision > len ) ? ot->precision : len);
@@ -79,7 +79,7 @@ int		print_uint(va_list ap, t_option *ot)
 			ot->sort = FALSE;
 		cnt += print_width(ot, len);
 	}
-	while (len > get_num_len((int)num) && (len--))
+	while (len > ulen && (len--))
 		ft_putchar_fd('0', 1);
 	print_uint_num(ot, num);
 	len = ((ot->precision > len) ? ot->precision : len);
