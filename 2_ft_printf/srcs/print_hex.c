@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:24 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/23 07:10:14 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/24 05:22:39 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			prinit_hex_num(t_option *ot, unsigned int hex_num, int is_alpha)
 		if (front_hex < 10)
 			ft_putchar_fd('0' + front_hex, 1);
 		else
-			ft_putchar_fd((is_alpha == UPPER) ? 'A' : 'a' + front_hex - 10, 1);
+			ft_putchar_fd(((is_alpha == UPPER) ? 'A' : 'a') + front_hex - 10, 1);
 	}
 }
 
