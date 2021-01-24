@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 03:48:24 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/22 17:44:31 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/24 09:21:14 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static	int	is_blank(char a)
 {
 	return (a == '\t' || a == '\v' || a == '\f' \
-	|| a == '\r' || a == '\n' || a == ' ');
+		|| a == '\r' || a == '\n' || a == ' ');
+
 }
 
 int			ft_atoi(const char *str)

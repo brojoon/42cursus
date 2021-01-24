@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/23 07:26:39 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/24 09:23:12 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ int		set_width(const char **format, va_list ap)
 	return (cnt);
 }
 
-int		find_case(char c)
+int		find_case(const char **format)
 {
-	if (c == '-' || c == '0')
+	skip_blank(format);
+	if (**format == '-' || **format == '0')
 		return (FLAGE);
-	else if (c == '*' || ft_isdigit(c))
+	else if (**format == '*' || ft_isdigit(**format))
 		return (WIDTH);
-	else if (c == '.')
+	else if (**format == '.')
 		return (PRECISION);
-	else if (c == 'c' || c == 's' || c == 'd' || c == 'i' || \
-	c == 'u' || c == 'x' || c == 'X' || c == 'p' || c == '%' )
+	else if (**format == 'c' || **format == 's' || **format == 'd' || **format == 'i' || \
+	**format == 'u' || **format == 'x' || **format == 'X' || **format == 'p' || **format == '%' )
 		return (PRINT);
 	return (0);
 }
@@ -111,11 +112,11 @@ int		print_control(const char **format, va_list ap)
 	(*format)++;
 	while (**format)
 	{
-		if (!(find_case(**format)))
+		if (!(find_case(format)))
 			break ;
-		if (state > find_case(**format))
+		if (state > find_case(format))
 			clear_ot(&ot);
-		state = find_case(**format);
+		state = find_case(format);
 		if (state == PRINT)
 		{
 			cnt += print_case(format, ap, &ot);

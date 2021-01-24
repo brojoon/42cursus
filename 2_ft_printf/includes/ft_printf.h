@@ -42,7 +42,7 @@ int					ft_printf(const char *format, ...);
 int					print_control(const char **format, va_list ap);
 int					print_case(const char **format, va_list ap, t_option *ot);
 void				add_option(const char **format, va_list ap, t_option *ot);
-int					find_case(char c);
+int					find_case(const char **format);
 int					set_width(const char **format, va_list ap);
 int					get_hex_len(unsigned int n);
 unsigned int		get_hex_pow(int n);
@@ -63,6 +63,7 @@ int					print_string(va_list ap, t_option *ot);
 int					print_char(va_list ap, t_option *ot);
 int					print_width(t_option *ot, int len);
 void				clear_ot(t_option *ot);
+void				skip_blank(const char **format);
 
 
 
