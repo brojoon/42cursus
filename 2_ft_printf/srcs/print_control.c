@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/24 09:23:12 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/24 10:08:48 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		set_width(const char **format, va_list ap)
 	return (cnt);
 }
 
-int		find_case(const char **format)
+int		find_case(const char **format, int *cnt)
 {
-	skip_blank(format);
+	skip_blank(format, cnt);
 	if (**format == '-' || **format == '0')
 		return (FLAGE);
 	else if (**format == '*' || ft_isdigit(**format))
@@ -112,11 +112,11 @@ int		print_control(const char **format, va_list ap)
 	(*format)++;
 	while (**format)
 	{
-		if (!(find_case(format)))
+		if (!(find_case(format, &cnt)))
 			break ;
-		if (state > find_case(format))
+		if (state > find_case(format, &cnt))
 			clear_ot(&ot);
-		state = find_case(format);
+		state = find_case(format, &cnt);
 		if (state == PRINT)
 		{
 			cnt += print_case(format, ap, &ot);
