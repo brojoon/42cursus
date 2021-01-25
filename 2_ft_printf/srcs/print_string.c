@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:32:36 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/23 07:14:24 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 04:20:47 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		print_string(va_list ap, t_option *ot)
 	int		idx;
 	char	*str1;
 	
-	str1 = (char *)va_arg(ap, char *);
+	str1 = va_arg(ap, char *);
 	if (str1 == NULL)
 		str1 = "(null)";
 	len = ft_strlen(str1);

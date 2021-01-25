@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:24 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/24 05:22:39 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 01:32:29 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int	get_hex_pow(int n)
 	return ((n == 0) ? 1 : get_hex_pow(n - 1) * 16);
 }
 
-void			prinit_hex_num(t_option *ot, unsigned int hex_num, int is_alpha)
+void			print_hex_num(t_option *ot, unsigned int hex_num, int is_alpha)
 {
 	int		hex_len;
 	int		front_hex;
@@ -46,7 +46,7 @@ void			prinit_hex_num(t_option *ot, unsigned int hex_num, int is_alpha)
 
 int				print_hex(va_list ap, t_option *ot, int is_alpha)
 {
-	unsigned		hex_num;
+	unsigned int	hex_num;
 	int				len;
 	int				hlen;
 	int				cnt;
@@ -63,7 +63,7 @@ int				print_hex(va_list ap, t_option *ot, int is_alpha)
 	}
 	while (len > hlen && (len--))
 		ft_putchar_fd('0', 1);
-	prinit_hex_num(ot, hex_num, is_alpha);
+	print_hex_num(ot, hex_num, is_alpha);
 	len = ((ot->precision > hlen) ? ot->precision : hlen);
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len);

@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:16:13 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/24 10:07:38 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 04:48:47 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	clear_ot(t_option *ot)
 	ot->sign = FALSE;
 }
 
-void	skip_blank(const char **format, int *cnt)
+void	print_blank(const char **format, int *cnt)
 {
 	while (**format == '\t' || **format == '\v' || **format == '\f' \
 			|| **format == '\r' || **format == '\n' || **format == ' ')
@@ -42,3 +42,5 @@ void	skip_blank(const char **format, int *cnt)
 				(*cnt)++;
 			}
 }
+
+

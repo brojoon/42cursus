@@ -46,7 +46,7 @@ int					find_case(const char **format, int *cnt);
 int					set_width(const char **format, va_list ap);
 int					get_hex_len(unsigned int n);
 unsigned int		get_hex_pow(int n);
-void				prinit_hex_num(t_option *ot, unsigned int hex_num, int is_alpha);
+void				print_hex_num(t_option *ot, unsigned int hex_num, int is_alpha);
 int					print_hex(va_list ap, t_option *ot, int is_alpha);
 int					get_num_len(int n);
 void				print_uint_num(t_option *ot, unsigned int n);
@@ -55,7 +55,6 @@ int					print_int(va_list ap, t_option *ot);
 int					print_uint(va_list ap, t_option *ot);
 int					get_long_hex_len(unsigned long long print);
 unsigned long long	get_long_hex_pow(int n);
-int					add_width_two(t_option *ot, int len);
 void				print_long_hex_num(t_option *ot, unsigned long long hex_num);
 int					print_pointer(va_list ap, t_option *ot);
 int					print_percent(t_option *ot);
@@ -63,7 +62,9 @@ int					print_string(va_list ap, t_option *ot);
 int					print_char(va_list ap, t_option *ot);
 int					print_width(t_option *ot, int len);
 void				clear_ot(t_option *ot);
-void				skip_blank(const char **format, int *cnt);
+void				print_blank(const char **format, int *cnt);
+int					print_right_sort(t_option *ot, int len);
+
 
 
 

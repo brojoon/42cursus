@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:16:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/24 05:18:41 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 03:57:45 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_uint_num(t_option *ot, unsigned int n)
 
 int		right_sort(t_option *ot, int num, int len)
 {
-	if (ot->sort && num < 0)
+	if (ot->sort == RIGHT && num < 0)
 		ft_putchar_fd('-', 1);
 	if (ot->precision != DISABLE)
 		ot->sort = FALSE;
@@ -55,7 +55,7 @@ int		print_int(va_list ap, t_option *ot)
 		ft_putchar_fd('-', 1);
 	while (len > get_num_len(num) && (len--))
 		ft_putchar_fd('0', 1);
-	print_uint_num(ot, (num < 0) ? -1 * num : num);
+	print_uint_num(ot, (num < 0) ? num * -1 : num);
 	len = ((ot->precision > len) ? ot->precision : len);
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len + ((num < 0) ? 1 : 0));

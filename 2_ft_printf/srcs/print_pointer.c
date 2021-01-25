@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:31 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/24 05:35:21 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 04:43:03 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,12 @@ unsigned long long	get_long_hex_pow(int n)
 	return ((n == 0) ? 1 : get_long_hex_pow(n - 1) * 16);
 }
 
-int					add_width_two(t_option *ot, int len)
-{
-	ot->sort = FALSE;
-	return	(print_width(ot, len + 2));
-}
-
 void				print_long_hex_num(t_option *ot, unsigned long long hex_num)
 {
 	int		hex_len;
 	int		front_hex;
 
-	if (hex_num == 0 && ot->precision == 0)
+	if (hex_num == 0 && ot->precision == FALSE)
 		return ;
 	hex_len = get_long_hex_len(hex_num);
 	while (hex_len--)
@@ -44,6 +38,13 @@ void				print_long_hex_num(t_option *ot, unsigned long long hex_num)
 		else
 			ft_putchar_fd('a' + front_hex - 10, 1);
 	}
+}
+
+int					print_right_sort(t_option *ot, int len)
+{
+	if (ot->sort == RIGHT)
+		ft_putstr_fd("0x", 1);
+	return (print_width(ot, len + 2));
 }
 
 int					print_pointer(va_list ap, t_option *ot)
@@ -63,8 +64,9 @@ int					print_pointer(va_list ap, t_option *ot)
 	}
 	cnt = len + 2;
 	if (ot->sort != LEFT)
-		cnt += add_width_two(ot, len);
-	ft_putstr_fd("0x", 1);
+		cnt += print_right_sort(ot, len);
+	if (ot->sort != RIGHT)
+		ft_putstr_fd("0x", 1);
 	while (len > plen && (len--))
 		ft_putchar_fd('0', 1);
 	print_long_hex_num(ot, hex_num);
