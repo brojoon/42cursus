@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:16:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 03:57:45 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 06:34:38 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		right_sort(t_option *ot, int num, int len)
 		ft_putchar_fd('-', 1);
 	if (ot->precision != DISABLE)
 		ot->sort = FALSE;
-	return (print_width(ot, len + ((num < 0 ) ? 1 : 0)));
+	return (print_width(ot, len + ((num < 0) ? 1 : 0)));
 }
 
 int		print_int(va_list ap, t_option *ot)
@@ -42,12 +42,13 @@ int		print_int(va_list ap, t_option *ot)
 	int		cnt;
 	int		num;
 	int		len;
-	
+
 	num = va_arg(ap, int);
-	ot->sort = (num < 0 && ot->sort == RIGHT && ot->precision != DISABLE) ? FALSE : ot->sort;
+	ot->sort = (num < 0 && ot->sort == RIGHT
+	&& ot->precision != DISABLE) ? FALSE : ot->sort;
 	cnt = (num < 0) ? 1 : 0;
 	len = get_num_len(num);
-	len = ((ot->precision > len ) ? ot->precision : len);
+	len = ((ot->precision > len) ? ot->precision : len);
 	cnt += len;
 	if (ot->sort != LEFT)
 		cnt += right_sort(ot, num, len);
@@ -59,7 +60,7 @@ int		print_int(va_list ap, t_option *ot)
 	len = ((ot->precision > len) ? ot->precision : len);
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len + ((num < 0) ? 1 : 0));
-	return (cnt - ((num || ot->precision || ot->width ) ? 0 : 1));
+	return (cnt - ((num || ot->precision || ot->width) ? 0 : 1));
 }
 
 int		print_uint(va_list ap, t_option *ot)
@@ -68,9 +69,9 @@ int		print_uint(va_list ap, t_option *ot)
 	unsigned int	num;
 	int				len;
 	int				ulen;
-	
+
 	num = va_arg(ap, unsigned int);
-	ulen = (num >= 1000000000) ? 10 : get_num_len(num); 
+	ulen = (num >= 1000000000) ? 10 : get_num_len(num);
 	len = ((ot->precision > ulen) ? ot->precision : ulen);
 	cnt = len;
 	if (ot->sort != LEFT)
@@ -85,7 +86,5 @@ int		print_uint(va_list ap, t_option *ot)
 	len = ((ot->precision > len) ? ot->precision : len);
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len);
-	return (cnt - ((num || ot->precision || ot->width ) ? 0 : 1));
-	
+	return (cnt - ((num || ot->precision || ot->width) ? 0 : 1));
 }
-

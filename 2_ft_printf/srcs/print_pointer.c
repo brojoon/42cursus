@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:31 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 04:43:03 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 06:35:33 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ int					print_pointer(va_list ap, t_option *ot)
 	hex_num = va_arg(ap, unsigned long long);
 	plen = get_long_hex_len(hex_num);
 	len = ((ot->precision > plen) ? ot->precision : plen);
-	if (!hex_num && ot->precision == FALSE)
-	{
-		plen = 0;
-		len = 0;
-	}
 	cnt = len + 2;
 	if (ot->sort != LEFT)
 		cnt += print_right_sort(ot, len);
@@ -70,7 +65,7 @@ int					print_pointer(va_list ap, t_option *ot)
 	while (len > plen && (len--))
 		ft_putchar_fd('0', 1);
 	print_long_hex_num(ot, hex_num);
-	len = ((ot->precision > len) ? ot->precision : len);	
+	len = ((ot->precision > len) ? ot->precision : len);
 	if (ot->sort == LEFT)
 		cnt += print_width(ot, len + 2);
 	return (cnt);

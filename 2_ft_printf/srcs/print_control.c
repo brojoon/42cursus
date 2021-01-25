@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 04:57:10 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 07:24:44 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int		set_width(const char **format, va_list ap)
 {
 	int cnt;
-	
+
 	if (**format == '*')
 	{
 		++(*format);
-		return(va_arg(ap, int));
+		return (va_arg(ap, int));
 	}
 	while (**format == '0')
 		++(*format);
@@ -38,8 +38,9 @@ int		find_case(const char **format, int *cnt)
 		return (WIDTH);
 	else if (**format == '.')
 		return (PRECISION);
-	else if (**format == 'c' || **format == 's' || **format == 'd' || **format == 'i' || \
-	**format == 'u' || **format == 'x' || **format == 'X' || **format == 'p' || **format == '%' )
+	else if (**format == 'c' || **format == 's' || **format == 'd' ||
+	**format == 'i' || **format == 'u' || **format == 'x' ||
+	**format == 'X' || **format == 'p' || **format == '%')
 		return (PRINT);
 	return (0);
 }
@@ -54,7 +55,7 @@ void	add_option(const char **format, va_list ap, t_option *ot)
 	else if (**format == '0' && ot->sort != LEFT)
 	{
 		ot->sort = RIGHT;
-		(*format)++;	
+		(*format)++;
 	}
 	else if (**format == '*' || ft_isdigit(**format))
 	{
@@ -63,18 +64,10 @@ void	add_option(const char **format, va_list ap, t_option *ot)
 		{
 			ot->width *= -1;
 			ot->sort = LEFT;
-		}	
+		}
 	}
 	else
-	{
-		++(*format);
-		if (**format == '*' || ft_isdigit(**format))
-			ot->precision = set_width(format, ap);
-		else
-			ot->precision = FALSE;
-		if (ot->precision < 0)
-			ot->precision = DISABLE;
-	}
+		set_precision_width(format, ap, ot);
 }
 
 int		print_case(const char **format, va_list ap, t_option *ot)
@@ -102,9 +95,9 @@ int		print_case(const char **format, va_list ap, t_option *ot)
 
 int		print_control(const char **format, va_list ap)
 {
-	int		cnt;
-	int		state;
-	t_option ot;
+	int			cnt;
+	int			state;
+	t_option	ot;
 
 	clear_ot(&ot);
 	state = 0;
@@ -126,4 +119,4 @@ int		print_control(const char **format, va_list ap)
 			add_option(format, ap, &ot);
 	}
 	return (cnt);
-}	
+}

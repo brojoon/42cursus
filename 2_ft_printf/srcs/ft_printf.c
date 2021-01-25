@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 00:52:02 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/15 21:31:12 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 06:30:29 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +19,7 @@ int		ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	cnt = 0;
-	while(*format)
+	while (*format)
 	{
 		if (*format == '%')
 			cnt += print_control(&format, ap);

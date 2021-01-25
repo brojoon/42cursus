@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 02:56:21 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/24 10:04:33 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 07:28:54 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
 
 int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
