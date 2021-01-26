@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:15:20 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 07:24:44 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 20:11:15 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		print_control(const char **format, va_list ap)
 	clear_ot(&ot);
 	state = 0;
 	cnt = 0;
-	(*format)++;
+	(*format)++; 
 	while (**format)
 	{
 		if (!(find_case(format, &cnt)))

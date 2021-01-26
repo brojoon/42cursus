@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:32:36 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 06:36:45 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 13:13:56 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		print_percent(t_option *ot)
 {
 	int cnt;
-
+	 
 	cnt = 1;
 	if (ot->sort != LEFT)
 		cnt += print_width(ot, 1);

@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 02:56:08 by hyungjki          #+#    #+#              #
-#    Updated: 2021/01/25 01:41:54 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/01/26 22:41:51 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,6 @@ SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
-
 $(NAME): $(LIBPOS) $(OBJS)
 	
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
@@ -44,6 +42,8 @@ $(LIBPOS):
 
 $(OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCDIR)
+
+all: $(NAME)
 	
 clean:
 	rm -rf $(OBJS)

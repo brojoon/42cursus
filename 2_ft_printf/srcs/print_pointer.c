@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:17:31 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 10:44:05 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/01/26 20:00:17 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void				print_long_hex_num(t_option *ot, unsigned long long hex_num)
 	if (hex_num == 0 && ot->precision == FALSE)
 		return ;
 	hex_len = get_long_hex_len(hex_num);
+
 	while (hex_len--)
 	{
-		front_hex = hex_num / get_long_hex_pow(hex_len) % 16;
+		front_hex = (hex_num / get_long_hex_pow(hex_len)) % 16;
 		if (front_hex < 10)
 			ft_putchar_fd('0' + front_hex, 1);
 		else
@@ -53,7 +54,6 @@ int					print_pointer(va_list ap, t_option *ot)
 	int					cnt;
 	int					len;
 	int					plen;
-
 	hex_num = va_arg(ap, unsigned long long);
 	plen = get_long_hex_len(hex_num);
 	len = ((ot->precision > plen) ? ot->precision : plen);
