@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:28:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/08 20:31:56 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/09 00:53:44 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,5 +199,67 @@ typedef struct      s_env
     t_sprite        *sprite;
     t_spt           stp;
 }                   t_env;
+
+void                ft_parsing_line(t_env *e, char *line);
+int                 ft_read_map(char **argv, t_env *e);
+void                ft_recup_axes(t_env *e, char *line);
+char                *ft_recup_root(char *line, t_env *e, int i);
+int                 ft_recup_color(char *line, t_env *e, int i);
+void                ft_recup_map(char *line, t_env *e);
+void                ft_open_window(t_env *e);
+void                ft_recup_map_2(t_env *e);
+void                ft_pos_perso(t_env *e);
+void                ft_orientation_perso(t_env *e);
+int                 ft_is_orientation(t_env *e, int i, int j);
+void                ft_raycasting(t_env *e);
+int                 ft_deplacement(t_env *e);
+int                 ft_key_up(int keycode, t_env *e);
+int                 ft_key_down(int keycode, t_env *e);
+void                ft_init_image(t_env *e);
+void                ft_no_wall(t_env *e);
+void                ft_colonne(t_env *e, int x, int y);
+void                ft_color_wall(t_env *e);
+void                ft_textures(t_env *e);
+void                ft_put_textures(t_env *e, int x);
+void                ft_bmp(t_env *e);
+void                ft_complete_header(t_env *e, t_bmp *bmp);
+int                 ft_exit(t_env *e);
+void                ft_sprite_distance(t_env *e);
+void                ft_swap_sprite(t_env *e);
+void                ft_sprite(t_env *e);
+void                ft_init_sprite(t_env *e);
+void                ft_check_wall(t_env *e);
+void                ft_check_resolution(t_env *e);
+void                ft_check_wall_next(t_env *e);
+void                ft_check_map(t_env *e, int i, char *line);
+char                *ft_delete_space(t_env *e);
+void                ft_check_color(t_env *e, char *line, int i);
+void                ft_space(char *line, int *i);
+void                ft_deplacement_down(t_env *e);
+void                ft_deplacement_left(t_env *e);
+void                ft_deplacement_right(t_env *e);
+void                ft_free_sprite(t_env *e);
+void                ft_get_color(t_env *e, int i);
+void                ft_free(t_env *e);
+void                ft_check(t_env *e);
+void                ft_parsing_read(t_env *e);
+int                 ft_check_identifiants(t_env *e);
+int                 ft_exit_before(t_env *e);
+void                ft_check_wall_again(t_env *e);
+int                 is_charset(char *charset, char c);
+void                ft_check_space(t_env *e);
+void                ft_check_resolution_next(t_env *e);
+void                ft_parsing_line_no(t_env *e, char *line, int i);
+void                ft_parsing_line_next(t_env *e, char *line, int i);
+void                ft_parsing_line_so(t_env *e, char *line, int i);
+void                ft_parsing_line_we(t_env *e, char *line, int i);
+void                ft_parsing_line_f(t_env *e, char *line, int i);
+void                ft_parsing_line_s(t_env *e, char *line, int i);
+void                ft_parsing_line_again(t_env *e, char *line, int i);
+char                *ft_delete_space_next(char *str);
+void                ft_check_malloc(t_env *e);
+int                 ft_exit(t_env *e);
+void                ft_parsing_line_check(t_env *e, char *line);
+void                ft_exit_free(t_env *e);
 
 #endif
