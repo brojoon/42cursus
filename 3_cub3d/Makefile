@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 01:54:39 by hyungjki          #+#    #+#              #
-#    Updated: 2021/02/09 05:13:29 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/02/11 23:40:02 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,11 @@ SRCS = $(addprefix$(SRC_DIR), $(SRC))
 
 OBJS = $(SRCS:.c=.o)
 
-$(OBJS): %.o : %.c
-	$(CC) $(CFLAGS) -c -I$(INC_DIR) -I$(MLX_DIR) -I$(LIB_DIR) $< -o
+%.o : %.c
+	$(CC) $(CFLAGS) -c -I$(INC_DIR) -I$(MLX_DIR) -I$(LIB_DIR) $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
-	cd $(LIB_DIR) && make
+	$(MAKE) -C $(LIB_DIR)
 	cd $(MLX_DIR) && make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_DIR)$(LIBFT) $(MLX_DIR)$(MLX)
 
