@@ -1,0 +1,39 @@
+R 900 600
+
+PZ ./textures/pillar_zombie.xpm
+
+LG ./textures/42logo.xpm
+ED ./textures/Ending_credit.xpm
+EC ./textures/Ending_credit_2.xpm
+
+SA ./textures/status_health.xpm
+SB ./textures/status_health_empty.xpm
+SC ./textures/status_hungry.xpm
+SD ./textures/status_hungry_empty.xpm
+
+NO ./textures/wall_north.xpm
+WE ./textures/wall_west.xpm
+EA ./textures/wall_east.xpm
+SO ./textures/wall_south.xpm
+
+F 129,182,97
+C 162,210,250
+
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+1 0 1 1 0 2 2 0 0 1 1 1 0 0 0 0 0 0 2 0 0 0 0 0 1 0 0 0 1
+1 0 0 1 0 2 2 0 0 0 0 0 0 0 2 0 0 0 2 0 0 0 2 0 1 0 0 0 1
+1 0 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1
+1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 1 1 1 0 1 1 1 1 0 0 0 1
+1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 0 0 0 0 0 0 1 0 0 0 1
+1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 0 1 0 0 1 0 0 0 1
+1 1 0 0 0 0 0 0 1 1 0 1 0 1 0 1 1 1 0 0 0 0 0 0 1 0 0 0 1
+1 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 1 0 0 1 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 1 0 0 1 0 N 0 1
+1 1 0 0 0 0 0 0 1 1 0 1 0 1 0 1 2 1 1 1 0 1 1 1 1 0 2 0 1
+1 1 1 1 0 1 1 1 1 1 1 1 0 1 0 1 2 1 1 1 0 1 1 1 1 0 0 0 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 0 1 1
+1 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 1 0 0 1 0 3 0 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
