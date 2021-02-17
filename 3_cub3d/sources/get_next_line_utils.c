@@ -1,26 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 04:52:56 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/17 04:07:58 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/01/06 03:27:09 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/17 00:51:27 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2, int k)
+char	*ft_gnl_strdup(void)
+{
+	char	*result;
+
+	result = (char *)malloc(1);
+	*result = '\0';
+	return (result);
+}
+
+size_t	ft_gnl_strlen(const char *s)
+{
+	size_t i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_gnl_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
 	int		cur;
 	int		i;
 
-	i = -1;
 	cur = 0;
-	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	i = -1;
+	result = (char *)malloc(ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1);
 	if (result)
 	{
 		while (s1[++i])
@@ -30,9 +49,19 @@ char	*ft_strjoin(char const *s1, char const *s2, int k)
 			result[cur++] = s2[i];
 		result[cur] = '\0';
 	}
-	if ((k == 1 || k == 3) && s1)
-		free((char *)s1);
-	if ((k == 2 || k == 3) && s2)
-		free((char *)s2);
 	return (result);
+}
+
+char	*ft_gnl_strchr(const char *s, int c)
+{
+	char	*ptr;
+
+	ptr = (char *)s;
+	while (*ptr)
+	{
+		if (*ptr == c)
+			break ;
+		ptr++;
+	}
+	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 02:56:21 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/20 00:27:27 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:46:02 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strdup(const char *s1);
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin(char const *s1, char const *s2, int k);
 char				**ft_split(char const *s, char c);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(const char *s1, const char *s2, size_t size);

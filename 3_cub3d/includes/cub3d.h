@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:28:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/09 00:53:44 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/16 04:54:24 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 #include "../minilibx-linux/mlx.h"
 #include "../libft/libft.h"
+#include "./get_next_line.h"
 #include <math.h>
 #include <stdio.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 typedef struct      s_identifiants
 {
@@ -167,7 +171,7 @@ typedef struct      s_spt
 {
     double          x;
     double          y;
-    double          inv_def;
+    double          inv_det;
     double          transform_x;
     double          transform_y;
     int             screen_x;
@@ -196,8 +200,10 @@ typedef struct      s_env
     t_mvt           mvt;
     t_textures      texture_north;
     t_textures      texture_south;
+    t_textures      texture_east;
+    t_textures      texture_west;
     t_sprite        *sprite;
-    t_spt           stp;
+    t_spt           spt;
 }                   t_env;
 
 void                ft_parsing_line(t_env *e, char *line);
@@ -261,5 +267,7 @@ void                ft_check_malloc(t_env *e);
 int                 ft_exit(t_env *e);
 void                ft_parsing_line_check(t_env *e, char *line);
 void                ft_exit_free(t_env *e);
+void                ft_strdel(char **as);
+float               ft_power(float nb, int power);
 
 #endif

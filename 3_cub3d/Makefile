@@ -6,30 +6,31 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 01:54:39 by hyungjki          #+#    #+#              #
-#    Updated: 2021/02/11 23:40:02 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/02/17 05:01:41 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3D
+NAME = Cub3d
 
 CC = gcc
-CFLAGS = -wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g
+CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g
 
-INC_DIR = ./includes
-MLX_DIR = ./minilibx-linux
-SRC_DIR = ./sources
-LIB_DIR = ./libft
+INC_DIR = ./includes/
+MLX_DIR = ./minilibx-linux/
+SRC_DIR = ./sources/
+LIB_DIR = ./libft/
 
-LIBFT = libft.a
-MLX = libmlx_Linux.a
+LIB = $(addprefix $(LIB_DIR), libft.a)
+MLX = $(addprefix $(MLX_DIR), libmlx_Linux.a)
 
 SRC =	main.c ft_parsing.c ft_parsing_2.c \
 		ft_read_map.c ft_window.c ft_orientation.c \
 		ft_deplacements.c ft_textures.c ft_bmp.c \
 		ft_sprite.c ft_utils.c ft_check_error.c \
-		ft_utils_2.c ft_utils_3.c ft_utils_4.c ft_prite_2.c
+		ft_utils_2.c ft_utils_3.c ft_utils_4.c ft_sprite_2.c \
+		get_next_line.c get_next_line_utils.c
 
-SRCS = $(addprefix$(SRC_DIR), $(SRC))
+SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
 OBJS = $(SRCS:.c=.o)
 
@@ -38,8 +39,8 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C $(LIB_DIR)
-	cd $(MLX_DIR) && make
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_DIR)$(LIBFT) $(MLX_DIR)$(MLX)
+	$(MAKE) -C $(MLX_DIR)
+	$(CC) -o $(NAME) -I $(MLX_DIR) -I $(LIB_DIR) -I$(INC_DIR) $(OBJS) $(LIB) $(MLX) $(MLX_DIR)libmlx.a $(CFLAGS)
 
 all: $(NAME)
 
@@ -50,10 +51,12 @@ clean:
 
 fclean: clean
 	cd $(LIB_DIR) && make fclean
-	cd $(MLX_DIR) && make fclean
 	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+leak:
+	valgrind --track-origins=yes --leak-check=full --error-limit=no ./Cub3d ./maps.cub
+
+.PHONY: all clean fclean re leak
 
