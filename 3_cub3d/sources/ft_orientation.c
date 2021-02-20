@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 20:50:23 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/16 04:27:26 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/20 01:05:02 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int     ft_is_orientation(t_env *e, int i, int j)
     if (e->map.tab_map[i][j] == 'N' || e->map.tab_map[i][j] == 'S' ||
                     e->map.tab_map[i][j] == 'E' || e->map.tab_map[i][j] == 'W')
     {
-        if (e->identifiants.perso == 1)
+        if (e->identifier.perso == 1)
         {
             ft_putstr_fd("Error\nmulti perso", 1);
             ft_exit_before(e);

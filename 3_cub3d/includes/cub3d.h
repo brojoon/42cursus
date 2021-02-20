@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:28:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/16 04:54:24 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/19 23:06:05 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-typedef struct      s_identifiants
+typedef struct      s_identifier
 {
     int             r;
     int             no;
@@ -34,7 +34,7 @@ typedef struct      s_identifiants
     int             c;
     int             m;
     int             perso;
-}                   t_identifiants;
+}                   t_identifier;
 
 typedef struct      s_axes
 {
@@ -188,7 +188,7 @@ typedef struct      s_spt
 
 typedef struct      s_env
 {
-    t_identifiants  identifiants;
+    t_identifier    identifier;
     t_axes          axes;
     t_root_textures root_textures;
     t_colors        colors;
@@ -207,9 +207,9 @@ typedef struct      s_env
 }                   t_env;
 
 void                ft_parsing_line(t_env *e, char *line);
-int                 ft_read_map(char **argv, t_env *e);
+void                ft_read_map(char *argv, t_env *e);
 void                ft_recup_axes(t_env *e, char *line);
-char                *ft_recup_root(char *line, t_env *e, int i);
+char                *ft_recup_root(char *line, int i);
 int                 ft_recup_color(char *line, t_env *e, int i);
 void                ft_recup_map(char *line, t_env *e);
 void                ft_open_window(t_env *e);
@@ -239,7 +239,7 @@ void                ft_check_resolution(t_env *e);
 void                ft_check_wall_next(t_env *e);
 void                ft_check_map(t_env *e, int i, char *line);
 char                *ft_delete_space(t_env *e);
-void                ft_check_color(t_env *e, char *line, int i);
+int                 ft_rgb_color(char *line, int *i);
 void                ft_space(char *line, int *i);
 void                ft_deplacement_down(t_env *e);
 void                ft_deplacement_left(t_env *e);
@@ -248,8 +248,8 @@ void                ft_free_sprite(t_env *e);
 void                ft_get_color(t_env *e, int i);
 void                ft_free(t_env *e);
 void                ft_check(t_env *e);
-void                ft_parsing_read(t_env *e);
-int                 ft_check_identifiants(t_env *e);
+void                ft_parsing_check(t_env *e);
+int                 ft_check_identifier(t_env *e);
 int                 ft_exit_before(t_env *e);
 void                ft_check_wall_again(t_env *e);
 int                 is_charset(char *charset, char c);

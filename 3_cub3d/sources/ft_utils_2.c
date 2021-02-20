@@ -6,18 +6,18 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:20:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/16 05:03:33 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/19 23:25:02 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void        ft_parsing_read(t_env *e)
+void        ft_parsing_check(t_env *e)
 {
-    if (ft_check_identifiants(e) == 0)
+    if (ft_check_identifier(e) == 0)
     {
         ft_putstr_fd("Error\nmap", 1);
-        ft_exit(e);
+        exit(0);
     }
     ft_recup_map_2(e);
     ft_pos_perso(e);

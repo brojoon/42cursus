@@ -6,59 +6,51 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:43:45 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/17 22:44:22 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/19 23:03:15 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char        *ft_recup_root(char *line, t_env *e, int i)
+char        *ft_recup_root(char *line, int i)
 {
-    char    **tab;
-    char    *line2;
+    char    **tmp;
+    char    *ret;
 
     i = 0;
-    if (!(tab = ft_split(line, ' ')))
+    if (!(tmp = ft_split(line, ' ')))
     {
         ft_putstr_fd("Error\n", 1);
-        ft_exit(e);
+        exit(0);
     }
-    if (!(line2 = ft_strdup(tab[1])) && line2[i] != '.' && line2[i + 1] != '/')
+    if (!(ret = ft_strdup(tmp[1])) && ret[i] != '.' && ret[i + 1] != '/')
     {
         ft_putstr_fd("Error\n", 1);
-        ft_exit(e);
+        exit(0);
     }
-    if (tab[2])
+    if (tmp[2])
     {
         ft_putstr_fd("Error\nWrong .cub", 1);
-        ft_exit(e);
+        exit(0);
     }
     i = 0;
-    while (tab[i])
-        free(tab[i++]);
-    free(tab[i]);
-    free(tab);
-    return (line2);
+    while (tmp[i])
+        free(tmp[i++]);
+    free(tmp[i]);
+    free(tmp);
+    return (ret);
 }
 
 int     ft_recup_color(char *line, t_env *e, int i)
 {
     int     color;
-
     i = 1;
     ft_space(line, &i);
-    ft_check_color(e, line, i);
-    color = ft_atoi(&line[i]) * 65536;
-    while (ft_isdigit(line[i]))
-        i++;
-    ft_space(line, &i);
-    color += ft_atoi(&line[++i]) * 256;
-    ft_space(line, &i);
-    while (ft_isdigit(line[i]))
-        i++;
-    ft_space(line, &i);
-    color += ft_atoi(&line[++i]);
-    ft_space(line, &i);
+    color = ft_rgb_color(line, &i) * 65536;
+    color += ft_rgb_color(line, &i) * 256;
+    if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
+        exit(0);
+    color += ft_atoi(&line[i]);
     while (ft_isdigit(line[i]))
         i++;
     ft_space(line, &i);
@@ -76,16 +68,11 @@ void        ft_recup_axes(t_env *e, char *line)
 
     i = 0;
     ft_space(line, &i);
-    while (ft_isprint(line[i]) == 0)
-        i++;
     i++;
     e->axes.axe_x = ft_atoi(&line[i]);
     ft_space(line, &i);
     while (ft_isdigit(line[i]))
         i++;
-    while (ft_isprint(line[i]) == 0)
-        i++;
-    i++;
     e->axes.axe_y = ft_atoi(&line[i]);
     ft_space(line, &i);
     while (ft_isdigit(line[i]))
@@ -94,7 +81,7 @@ void        ft_recup_axes(t_env *e, char *line)
     if (line[i])
     {
         ft_putstr_fd("Error\nWrong .cub", 1);
-        ft_exit(e);
+        exit(0);
     }
 }
 

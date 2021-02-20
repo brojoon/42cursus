@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:45:25 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/17 05:02:33 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:38:24 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,46 +80,22 @@ void    ft_check_resolution_next(t_env *e)
         ft_exit_before(e);
     }
 }
-void    ft_check_color_next(t_env *e, char *line, int i, int j)
+
+int    ft_rgb_color(char *line, int *i)
 {
-    ft_space(line, &i);
-    j += line[i] == ',' ? 1 : 0; 
-    i++;
-    ft_space(line, &i);
-    j += ft_isdigit(line[i]) ? 1 : 0;
-    ft_space(line, &i);
-    if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
-        j--;
-    while (ft_isdigit(line[i]))
-        i++;
-    ft_space(line, &i);
-    j -= line[i] != '\0' ? 1 : 0;
-    if (j != 5)
+    int ret;
+    if (ft_atoi(&line[*i]) < 0 || ft_atoi(&line[*i]) > 255)
     {
-        ft_putstr_fd("Error\nWrong color", 1);
-        ft_exit(e);
+        ft_putstr_fd("Error\nrgb", 1);
+        exit(0);
     }
+    ret = ft_atoi(&line[*i]);
+    while (ft_isdigit(line[*i]))
+        (*i)++;
+    if (line[*i] != ',')
+        exit(0);
+    (*i)++;
+    ft_space(line, i);
+    
+    return ret;
 }
-
-void    ft_check_color(t_env *e, char *line, int i)
-{
-    int j;
-
-    j = ft_isdigit(line[i]) ? 1 : 0;
-    if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
-        j--;
-    while (ft_isdigit(line[i]))
-        i++;
-    ft_space(line, &i);
-    j += line[i] == ',' ? 1 : 0;
-    i++;
-    ft_space(line, &i);
-    j += ft_isdigit(line[i]) ? 1 : 0;
-    ft_space(line, &i);
-    if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
-        j--;
-    while (ft_isdigit(line[i]))
-        i++;
-    ft_check_color_next(e, line, i, j);
-}
-

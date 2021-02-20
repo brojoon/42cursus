@@ -6,19 +6,19 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:57:41 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/17 22:45:38 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:53:33 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int     ft_check_identifiants(t_env *e)
+int     ft_check_identifier(t_env *e)
 {
-    if (e->identifiants.r != 1 || e->identifiants.no != 1 ||
-            e->identifiants.so != 1 || e->identifiants.we != 1
-            || e->identifiants.ea != 1 || e->identifiants.s != 1
-            || e->identifiants.f != 1 || e->identifiants.c != 1
-            || e->identifiants.m != 1)
+    if (e->identifier.r != 1 || e->identifier.no != 1 ||
+            e->identifier.so != 1 || e->identifier.we != 1
+            || e->identifier.ea != 1 || e->identifier.s != 1
+            || e->identifier.f != 1 || e->identifier.c != 1
+            || e->identifier.m != 1)
         return (0);
     else
         return (1);
