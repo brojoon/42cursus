@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:15:22 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/20 15:37:17 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:01:44 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ void    ft_recup_map_2(t_env *e)
     e->map.tab_map = ft_split(e->map.buff, '\n');
     while (e->map.tab_map[j][i])
     {
-        i = 0;
         while (e->map.tab_map[j][i])
             i++;
         if (i > max)
             max = i;
         if (j < e->raycasting.y)
             j++;
-        else
+        if (j == e->raycasting.y)
             break;
+        i = 0;
     }
     e->raycasting.x = max;
 }

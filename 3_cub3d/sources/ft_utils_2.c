@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:20:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/19 23:25:02 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/21 22:09:13 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void        ft_parsing_check(t_env *e)
     if (ft_check_identifier(e) == 0)
     {
         ft_putstr_fd("Error\nmap", 1);
-        exit(0);
+        ft_exit(e);
     }
     ft_recup_map_2(e);
     ft_pos_perso(e);
@@ -44,7 +44,7 @@ void        ft_mv_up(t_env *e)
                 [(int)(e->map.pos_n_x)] != '1')
         && (e->map.tab_map[(int)(e->map.pos_n_y + e->orientation.dir_y * 0.03)]
                 [(int)(e->map.pos_n_x)] != '2'))
-            e->map.pos_n_y += e->orientation.dir_y * 0.03;
+            e->map.pos_n_y += e->orientation.dir_y * 0.03;   
     }
 }
 

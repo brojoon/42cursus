@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 02:56:21 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/13 19:46:02 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/20 20:57:04 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char				*ft_strnstr(const char *big, const char *little,
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
+int					ft_strcmp(char *dest, char *src);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 

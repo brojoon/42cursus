@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 21:14:36 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/16 04:31:05 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/20 23:42:41 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,15 @@ void    ft_check_space(t_env *e)
 
     i = 1;
     j = 0;
-    while (i < e->raycasting.y - 2)
+    while (i < e->raycasting.y - 1)
     {
         while (e->map.tab_map[i][j])
         {
             if (e->map.tab_map[i][j] == 'X' &&
             ((j != 0 && e->map.tab_map[i][j - 1] == '0')
-            || (j != e->raycasting.x && e->map.tab_map[i][j + 1] == '0') ||
-            e->map.tab_map[i + 1][j] == '0' || e->map.tab_map[i - 1][j] == '0'))
+            || (j < (int)ft_strlen(e->map.tab_map[i] - 1) && e->map.tab_map[i][j + 1] == '0') ||
+            (((int)ft_strlen(e->map.tab_map[i + 1]) > j) && e->map.tab_map[i + 1][j] == '0') || 
+            (((int)ft_strlen(e->map.tab_map[i - 1]) > j) && e->map.tab_map[i - 1][j] == '0')))
             {
                 ft_putstr_fd("Error map\nOnly 1 on the edges of your map", 1);
                 ft_exit(e);
