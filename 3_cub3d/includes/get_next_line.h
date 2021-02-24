@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 03:27:07 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/16 23:55:59 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:23:58 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100000000
+#  define BUFFER_SIZE 100
 # endif
 
 # define FD_MAX 98765

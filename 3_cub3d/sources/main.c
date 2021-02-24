@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:26:41 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/21 20:31:45 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/23 20:23:18 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    ft_open_window(t_env *e)
     }
     ft_check_resolution_next(e);
     if (!(e->mlx.win_ptr = mlx_new_window(e->mlx.ptr, e->axes.axe_x,
-            e->axes.axe_y, "Cub3d")))
+            e->axes.axe_y, "Cub3D")))
     {
         ft_putstr_fd("Error\nmlx_new_window", 1);
         ft_exit(e);
@@ -57,7 +57,6 @@ void    ft_open_window(t_env *e)
     ft_init_sprite(e);
     ft_check_wall(e);
     ft_check_space(e);
-    ft_init_image(e);
     mlx_do_key_autorepeatoff(e->mlx.ptr);
     mlx_hook(e->mlx.win_ptr, 2, 1, &ft_key_down, e);
     mlx_hook(e->mlx.win_ptr, 3, 2, &ft_key_up, e);

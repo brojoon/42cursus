@@ -6,11 +6,11 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 01:54:39 by hyungjki          #+#    #+#              #
-#    Updated: 2021/02/22 06:26:06 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/02/23 18:09:33 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3d
+NAME = Cub3D
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g

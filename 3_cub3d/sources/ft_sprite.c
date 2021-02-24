@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:03:52 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/22 19:29:09 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:29:01 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_init_sprite(t_env *e)
 
 	y = 0;
 	i = 0;
-	while (e->map.tab_map[y])
+	while (y < e->raycasting.y)
 	{
 		x = 0;
 		while (e->map.tab_map[y][x])

@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 06:40:28 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/17 00:51:34 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:22:26 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,27 @@ int	get_next_line(int fd, char **line)
 {
 	ssize_t		len;
 	char		*buff;
-	static char	*memo[FD_MAX];
+	static char	*memo;
 	char		*tmp;
 
-	if (fd < 0 || fd >= FD_MAX || !line || BUFFER_SIZE <= 0 || \
+	if (fd < 0 || !line || BUFFER_SIZE <= 0 || \
 		!(buff = (char *)malloc(BUFFER_SIZE + 1)) || read(fd, buff, 0))
 		return (ERROR);
-	if (!memo[fd] && !(len = 0))
-		memo[fd] = ft_gnl_strdup();
-	while (memo[fd] && (!(ft_gnl_strchr(memo[fd], '\n'))) && \
+	if (!memo && !(len = 0))
+		memo = ft_gnl_strdup();
+	while (memo && (!(ft_gnl_strchr(memo, '\n'))) && \
 			((len = read(fd, buff, BUFFER_SIZE)) > 0))
 	{
 		buff[len] = '\0';
-		tmp = ft_gnl_strjoin(memo[fd], buff);
-		if (memo[fd])
-			free(memo[fd]);
-		memo[fd] = tmp;
+		tmp = ft_gnl_strjoin(memo, buff);
+		if (memo)
+			free(memo);
+		memo = tmp;
 	}
 	free(buff);
-	if (((!(buff = NULL)) && len < 0) || memo[fd] == NULL)
-		return (catch_error(&(memo[fd])));
-	if (len == 0 && memo[fd][0] == '\0')
-		return (catch_end(line, &(memo[fd])));
-	return (catch_read(line, &(memo[fd])));
+	if (((!(buff = NULL)) && len < 0) || memo == NULL)
+		return (catch_error(&(memo)));
+	if (len == 0 && memo[0] == '\0')
+		return (catch_end(line, &(memo)));
+	return (catch_read(line, &(memo)));
 }
