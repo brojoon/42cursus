@@ -6,11 +6,11 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 01:54:39 by hyungjki          #+#    #+#              #
-#    Updated: 2021/02/23 18:09:33 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/02/26 10:24:59 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3D
+NAME = cub3D
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g
@@ -55,8 +55,10 @@ fclean: clean
 
 re: fclean all
 
-leak:
-	valgrind --track-origins=yes --leak-check=full --error-limit=no ./Cub3d ./maps.cub
-
-.PHONY: all clean fclean re leak
+leaks:
+	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map2.cub
+bmp: 
+	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map1.cub --save
+	
+.PHONY: all clean fclean re leaks bmp
 

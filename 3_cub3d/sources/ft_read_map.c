@@ -6,34 +6,43 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:15:22 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/20 22:01:44 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 10:24:18 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char    *ft_delete_space(t_env *e)
+char    **ft_map_size(t_env *e)
 {
     int     i;
-    int     k;
-    char    *tmp;
+    int     max;
+    int     cnt;
+    char    **tmp;
 
     i = -1;
-    k = 0;
+    max = 0;
+    cnt = 0;
     while (e->map.buff[++i])
     {
-        if (e->map.buff[i] == ' ')
+        if (e->map.buff[i] == '\n')
         {
-            e->map.buff[i] = 'X';
+            if (max < cnt)
+                max = cnt;
+            cnt = 0;
         }
+        else
+            cnt++;
     }
-    if(!(tmp = (char *)malloc(sizeof(char) * (i + 1))))
-        exit(0);
-    i = -1;
-    while (e->map.buff[++i])
-            tmp[k++] = e->map.buff[i];
-    tmp[k] = '\0';
-    free(e->map.buff);
+    e->raycasting.x = max;
+    if(!(tmp = (char **)malloc(sizeof(char *) * e->raycasting.y)))
+        ft_exit("Error delete space func malloc fail", -1);
+    i = 0;
+    while (i < e->raycasting.y)
+    {
+          if(!(*(tmp + i) = (char *)malloc(e->raycasting.x)))
+            ft_exit("Error delete space func malloc fail", -1);
+          i++;
+    }
     return (tmp);
 }
 
@@ -51,26 +60,49 @@ void    ft_recup_map_2(t_env *e)
 {
     int i;
     int j;
-    int max;
+    char **tmp;
 
-    max = 0;
+    i = -1;
+    tmp = ft_map_size(e);
+    e->map.tab_map = ft_split(e->map.buff, '\n');
+    while (++i < e->raycasting.y)
+    {
+        j = 0;
+        while (e->map.tab_map[i][j] && j < e->raycasting.x)
+        {
+            if (e->map.tab_map[i][j] != ' ')
+                tmp[i][j] = e->map.tab_map[i][j];
+            else
+                tmp[i][j] = 'X';
+            j++;
+        }
+        while (j < e->raycasting.x)
+            tmp[i][j++] = 'X';
+
+    }
+    i = 0;
+    while (e->map.tab_map[i])
+    {
+        free(e->map.tab_map[i]);
+        i++;
+    }
+    free(e->map.tab_map);
+    e->map.tab_map = tmp;
+    tmp = NULL;
     i = 0;
     j = 0;
-    e->map.buff = ft_delete_space(e);
-    e->map.tab_map = ft_split(e->map.buff, '\n');
-    while (e->map.tab_map[j][i])
+    while (i < e->raycasting.y)
     {
-        while (e->map.tab_map[j][i])
-            i++;
-        if (i > max)
-            max = i;
-        if (j < e->raycasting.y)
+        j = 0;
+        while (j < e->raycasting.x)
+        {
+            printf("%c", e->map.tab_map[i][j]);
             j++;
-        if (j == e->raycasting.y)
-            break;
-        i = 0;
+        }
+        printf("\n");
+        i++;
     }
-    e->raycasting.x = max;
+      printf("y :%d\n ", e->raycasting.y);
 }
 
 void    ft_pos_perso_next(t_env *e, int i, int j)
@@ -79,8 +111,7 @@ void    ft_pos_perso_next(t_env *e, int i, int j)
                 e->map.tab_map[i][j] != '2' && e->map.tab_map[i][j] != 'X' &&
                 (ft_is_orientation(e, i, j) == 0))
     {
-        ft_putstr_fd("Error\nWrong map", 1);
-        ft_exit_before(e);
+        ft_exit("Error wrong map pos_perso_next", -1);
     }
     if (e->map.tab_map[i][j] == '2')
         e->map.nbr_sprite += 1;
@@ -99,9 +130,9 @@ void    ft_pos_perso(t_env *e)
 
     i = 0;
     j = 0;
-    while (i < e->raycasting.y && e->map.tab_map[i])
+    while (i < e->raycasting.y)
     {
-        while (e->map.tab_map[i][j])
+        while (j < e->raycasting.x)
         {
             ft_pos_perso_next(e, i, j);
             j++;
@@ -111,12 +142,10 @@ void    ft_pos_perso(t_env *e)
     }
     if (e->identifier.perso == 0)
     {
-        ft_putstr_fd("Error\nMiss perso", 1);
-        ft_exit_before(e);
+        ft_exit( "Error miss perso", -1);
     }
     if (e->map.pos_n_x > e->raycasting.y && e->map.pos_n_x > e->raycasting.x)
     {
-        ft_putstr_fd("Error\nError perso", 1);
-        exit(0);
+        ft_exit("Error perso out of range", -1);
     }
 }

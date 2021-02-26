@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:35:56 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/19 23:06:13 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/25 22:27:55 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void    ft_parsing_line_again_next(t_env *e, char *line, int i)
     else if (line && (line[i] != '1' || line[i] != '\0')
             && e->identifier.m == 1)
     {
-        ft_putstr_fd("Error\nmap incorrect", 1);
-        exit(0);
+        ft_exit("Error map", -1);
     }
 }
 
@@ -33,14 +32,11 @@ void    ft_parsing_line_again(t_env *e, char *line, int i)
     {
         if (e->identifier.c == 0)
         {
-            e->colors.color_plafond = ft_recup_color(line, e, i);
+            e->colors.color_plafond = ft_recup_color(line, i);
             e->identifier.c = 1;
         }
         else
-        {
-            ft_putstr_fd("Error\nTwo colors C, only one", 1);
-            ft_exit(e);
-        }
+            ft_exit("Error two colors C", -1);
     }
     ft_parsing_line_again_next(e, line, i);
 }
@@ -56,10 +52,7 @@ void    ft_parsing_line_next(t_env *e, char *line, int i)
             e->identifier.ea = 1;
         }
         else
-        {
-            ft_putstr_fd("Error\nTwo EA textures, only one", 1);
-            exit(0);
-        }
+            ft_exit("Error EA textures", -1);
     }
     ft_parsing_line_s(e, line, i);
 }
@@ -70,7 +63,7 @@ void    ft_parsing_line(t_env *e, char *line)
 
     i = 0;
     ft_space(line, &i);
-    ft_parsing_line_check(e, line);
+    ft_parsing_line_check(line);
     if (line[i] == 'R' && line[i + 1] == ' ' && e->identifier.m == 0)
     {
         if (e->identifier.r == 0)
@@ -79,10 +72,7 @@ void    ft_parsing_line(t_env *e, char *line)
             e->identifier.r = 1;
         }
         else
-        {
-            ft_putstr_fd("Error\nTwo R, Only one", 1);
-            exit(0);
-        }
+            ft_exit("Error R", -1);
     }
     ft_parsing_line_no(e, line, i);
 }
@@ -95,20 +85,14 @@ void     ft_read_map(char *argv, t_env *e)
 
     line = NULL;
     if ((fd = open(argv, O_RDONLY)) == -1)
-    {
-        ft_putstr_fd("Error\nfunction read", 1);
-        exit(0);
-    }
+        ft_exit("Error map open", -1);
     while ((ret = get_next_line(fd, &line)) == 1)
     {
         ft_parsing_line(e, line);
         free(line);
     }
     if (ret == -1)
-    {
-        ft_putstr_fd("Error\nRet == -1", 1);
-        exit(0);
-    }
+        ft_exit("get_next_line Error", -1);
     ft_parsing_line(e, line);
     free(line);
     close(fd);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/13 14:03:52 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/23 19:29:01 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/25 19:56:41 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/25 19:56:43 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,12 @@ void	ft_sprite_next(t_env *e, int x, int i)
 	{
 		d = (y * 256 - e->axes.axe_y * 128 + e->spt.height * 128);
 		e->spt.tex_y = (d * e->sprite[i].image.h / e->spt.height) / 256;
-		ft_get_color(e, i);
-		if ((e->sprite[i].image.color != 0xBDDAD1) &&
+		if (e->spt.tex_y > 0)
+		{
+			e->sprite[i].image.color = e->sprite[i].image.get_data
+				[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w];
+		}
+		if ((e->sprite[i].image.color != -16777216) &&
 				e->spt.transform_y < e->spt.dist_wall[x])
 		{
 			if (x >= 0 && x < e->axes.axe_x && y >= 0 && y < e->axes.axe_y)

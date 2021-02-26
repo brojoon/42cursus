@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 14:49:19 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/22 06:18:28 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/25 19:56:48 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/25 19:56:50 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ t_textures		ft_info_texture(char *root_texture, t_env *e)
 	if (!(texture.win_ptr = mlx_xpm_file_to_image(e->mlx.ptr,
 			root_texture, &texture.w, &texture.h)))
 	{
-		ft_putstr_fd("Error\nWrong texture", 1);
-		ft_exit_before(e);
+		ft_exit("Error wrong texture info", -1);
 	}
 	if (!(texture.get_data = (int *)mlx_get_data_addr(texture.win_ptr,
 			&texture.bits_per_pixel, &texture.size_line, &texture.endian)))
 	{
-		ft_putstr_fd("Error\nWrong texture",1);
-		ft_exit_before(e);
+		ft_exit("Error wrong texture info2",-1);
 	}
 	return (texture);
 }
@@ -39,14 +37,12 @@ t_mlx			ft_info_sprite(char *root_texture, t_env *e)
 	if (!(texture.win_ptr = mlx_xpm_file_to_image(e->mlx.ptr, root_texture,
 			&texture.w, &texture.h)))
 	{
-		ft_putstr_fd("Error\nWrong sprite", 1);
-		ft_exit_before(e);
+		ft_exit("Error wrong sprite", -1);
 	}
 	if (!(texture.get_data = (int *)mlx_get_data_addr(texture.win_ptr,
 			&texture.bits_per_pixel, &texture.size_line, &texture.endian)))
 	{
-		ft_putstr_fd("Error\nWrong sprite", 1);
-		ft_exit_before(e);
+		ft_exit("Error wrong sprite", -1);
 	}
 	return (texture);
 }

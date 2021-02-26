@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 17:12:40 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/22 06:17:11 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/25 19:56:00 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/25 19:56:02 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int		ft_is_orientation(t_env *e, int i, int j)
 	{
 		if (e->identifier.perso == 1)
 		{
-			ft_putstr_fd("Error\nmulti perso", 1);
-			ft_exit_before(e);
+			ft_exit("Error multi perso", -1);
 		}
 		e->orientation.orientation_perso = e->map.tab_map[i][j];
 		return (1);

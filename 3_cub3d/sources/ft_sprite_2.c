@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 10:47:38 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/22 19:26:37 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/25 19:56:30 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/26 10:07:55 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,6 @@ void	ft_swap_sprite(t_env *e)
 	}
 }
 
-void	ft_get_color(t_env *e, int i)
-{
-	if (e->spt.tex_y > 0)
-	{
-		if (e->sprite[i].image.get_data[e->spt.tex_x + e->spt.tex_y
-				* e->sprite[i].image.w] != 0)
-		{
-			e->sprite[i].image.color = e->sprite[i].image.get_data
-				[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w];
-		}
-		else
-		{
-			e->sprite[i].image.color = 0xBDDAD1;
-		}
-	}
-}
-
 void	ft_free_sprite(t_env *e)
 {
 	if (e->spt.dist_wall)
@@ -81,17 +64,13 @@ void	ft_check_wall_again(t_env *e)
 	int	j;
 
 	i = 0;
-	j = 0;
+	j = e->raycasting.x - 1;
 	while (i < e->raycasting.y)
 	{
-		while (e->map.tab_map[i][j])
-			j++;
-		j--;
 		if (e->map.tab_map[i][j] != '1' && e->map.tab_map[i][j] != 'X')
 		{
-			ft_exit(e);
+			ft_exit("Error wrong map", -1);
 		}
 		i++;
-		j = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:12:22 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/19 22:18:30 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:56:12 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ void    ft_parsing_line_s(t_env *e, char *line, int i)
             e->identifier.s = 1;
         }
         else
-        {
-            ft_putstr_fd("Error\nTwo S textures, only one", 1);
-            exit(0);
-        }
+            ft_exit("Error S textures", -1);
     }
     ft_parsing_line_f(e, line, i);
 }
@@ -36,14 +33,11 @@ void    ft_parsing_line_f(t_env *e, char *line, int i)
     {
         if (e->identifier.f == 0)
         {
-            e->colors.color_sol = ft_recup_color(line, e, i);
+            e->colors.color_sol = ft_recup_color(line, i);
             e->identifier.f = 1;
         }
         else
-        {
-            ft_putstr_fd("Error\nTwo colors F, only one", 1);
-            exit(0);
-        }
+            ft_exit("Error two colors F", -1);
     }
     ft_parsing_line_again(e, line, i);
 }
@@ -59,10 +53,7 @@ void    ft_parsing_line_no(t_env *e, char *line, int i)
             e->identifier.no = 1;
         }
         else
-        {
-            ft_putstr_fd("Erro\nTwo NO textures, only one", 1);
-            exit(0);
-        }
+            ft_exit("Error NO textures", -1);
     }
     ft_parsing_line_so(e, line, i);
 }
@@ -78,10 +69,7 @@ void    ft_parsing_line_so(t_env *e, char *line, int i)
             e->identifier.so = 1;
         }
         else
-        {
-            ft_putstr_fd("Error", 1);
-            exit(0);
-        }
+            ft_exit("Error SO textures", -1);
     }
     ft_parsing_line_we(e, line, i);
 }
@@ -97,10 +85,7 @@ void    ft_parsing_line_we(t_env *e, char *line, int i)
             e->identifier.we = 1;
         }
         else
-        {
-            ft_putstr_fd("Error\nTwo WE, only one", 1);
-            exit(0);
-        }
+            ft_exit("Error WE textures", -1);
     }
     ft_parsing_line_next(e, line, i);
 }

@@ -1,0 +1,39 @@
+                  
+            
+          R 700 450
+        
+        
+        NO ./textures/texture_north.xpm
+      SO ./textures/texture_south.xpm
+    WE ./textures/texture_west.xpm
+  EA ./textures/texture_east.xpm
+      S ./textures/sprite.xpm
+      
+F         48, 53,  64
+
+
+C 15,   28, 4
+
+                 1         
+                101   
+                101     
+                101   
+                101   
+                101 
+                101   
+                101  
+                101  
+                101  
+                101  
+                101  
+                101 
+ 11111111111111110111111111111111    
+10000200000000000W0000000020000001   
+ 11111111111111110111111111111111     
+                101   
+                101  
+                101  
+                101 
+                101   
+                101   
+                 1

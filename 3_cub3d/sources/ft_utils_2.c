@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:20:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/23 20:02:51 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/25 22:29:20 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void        ft_parsing_check(t_env *e)
 {
     if (ft_check_identifier(e) == 0)
     {
-        ft_putstr_fd("Error\nmap", 1);
-        ft_exit(e);
+        printf("parsing check");
+        ft_exit("Error parsing_check func", -1);
     }
     ft_recup_map_2(e);
     ft_pos_perso(e);
@@ -56,16 +56,5 @@ int         ft_deplacement(t_env *e)
     ft_deplacement_left(e);
     ft_deplacement_right(e);
     ft_init_image(e);
-    return (0);
-}
-
-int         ft_exit_before(t_env *e)
-{
-    if (e->sprite)
-        free(e->sprite);
-    if (e->map.buff)
-        free(e->map.buff);
-    ft_exit_free(e);
-    exit(0);
     return (0);
 }

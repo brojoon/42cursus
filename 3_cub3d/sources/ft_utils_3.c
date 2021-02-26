@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:57:41 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/19 21:53:33 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:51:17 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void    ft_check_malloc(t_env *e)
     if (!(e->sprite = (t_sprite *)ft_calloc(e->map.nbr_sprite,
         sizeof(t_sprite))))
     {
-        ft_putstr_fd("Error\nMalloc sprite", 1);
-        ft_exit(e);
+        ft_exit("Error sprite malloc failed", -1);
     }
 }
 
@@ -78,11 +77,11 @@ int     ft_key_up(int keycode, t_env *e)
     if (keycode == 65361)
         e->mvt.rot_left = 0;
     if (keycode == 65307)
-        ft_exit(e);
+        ft_exit("ESC", 0);
     return (0);
 }
 
-void    ft_parsing_line_check(t_env *e, char *line)
+void    ft_parsing_line_check(char *line)
 {
     int     i;
 
@@ -94,7 +93,6 @@ void    ft_parsing_line_check(t_env *e, char *line)
     && (line[i] != 'W' && line[i + 1] != 'E')
     && (line[i] != 'E' && line[i + 1] != 'A')))
     {
-        ft_putstr_fd("Error\nWrong information in maps.cub\n", 1);
-        ft_exit(e);
+        ft_exit("Error wrong information in maps.cub\n", -1);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:45:25 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/20 21:02:23 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 09:17:50 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ void    ft_check_wall_next(t_env *e)
 
     i = 0;
     j = e->raycasting.y - 1;
-    while (e->map.tab_map[j][i])
+    while (i < e->raycasting.x)
     {
         if (e->map.tab_map[j][i] != '1' && e->map.tab_map[j][i] != 'X')
         {
-            ft_putstr_fd("Error map\nOnly 1 on the edges of your map", 1);
-            ft_exit(e);
+            ft_exit("Error map edges check_wall_next", -1);
         }
         i++;
     }
@@ -36,12 +35,11 @@ void    ft_check_wall(t_env *e)
     int i;
 
     i = 0;
-    while (e->map.tab_map[0][i])
+    while (i < e->raycasting.x)
     {
         if (e->map.tab_map[0][i] != '1' && e->map.tab_map[0][i] != 'X')
         {
-            ft_putstr_fd("Error map\nOnly 1 on the edges of your map", 1);
-            ft_exit(e);
+            ft_exit("Error map edges check_wall", -1);
         }
         i++;
     }
@@ -50,8 +48,7 @@ void    ft_check_wall(t_env *e)
     {
         if (e->map.tab_map[i][0] != '1' && e->map.tab_map[i][0] != 'X')
         {
-            ft_putstr_fd("Error map\nOnly 1 on the edges of your map", 1);;
-            ft_exit(e);
+            ft_exit("Error map edges check_wall", -1);
         }
         i++;
     }
@@ -67,8 +64,7 @@ void    ft_check_resolution_next(t_env *e)
     sizey = 0;
     if (!(mlx_get_screen_size(e->mlx.ptr, &sizex, &sizey)))
     {
-        ft_putstr_fd("Error\n mlx_get_screen", 1);
-        ft_exit_before(e);
+        ft_exit("Error mlx_get_screen", -1);
     }
     if (e->axes.axe_x > sizex)
         e->axes.axe_x = sizex;
@@ -76,8 +72,7 @@ void    ft_check_resolution_next(t_env *e)
         e->axes.axe_y = sizey;
     if (e->axes.axe_x <= 0 || e->axes.axe_y <= 0)
     {
-        ft_putstr_fd("Error\nResolution <= 0", 1);
-        ft_exit_before(e);
+        ft_exit("Error resolution <= 0", -1);
     }
 }
 
@@ -86,8 +81,7 @@ int    ft_rgb_color(char *line, int *i)
     int ret;
     if (ft_atoi(&line[*i]) < 0 || ft_atoi(&line[*i]) > 255)
     {
-        ft_putstr_fd("Error\nrgb", 1);
-        exit(0);
+        ft_exit("Error rgb" ,-1);
     }
     ret = ft_atoi(&line[*i]);
     while (ft_isdigit(line[*i]))
