@@ -6,11 +6,20 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:56:30 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 10:07:55 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:13:26 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void    ft_check_malloc(t_env *e)
+{
+    if (!(e->sprite = (t_sprite *)ft_calloc(e->map.nbr_sprite,
+        sizeof(t_sprite))))
+    {
+        ft_exit("Error sprite malloc failed", -1);
+    }
+}
 
 void	ft_sprite_distance(t_env *e)
 {

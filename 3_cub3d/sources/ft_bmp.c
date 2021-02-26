@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 00:29:45 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 09:58:58 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 13:10:24 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,27 @@ void	ft_bmp(t_env *e)
 	close(bmp.fd);
 }
 
-void	ft_check_space(t_env *e)
+void    ft_push_bmp(t_env *e)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (i < e->raycasting.y)
-	{
-		while (j < e->raycasting.x)
-		{
-			if (e->map.tab_map[i][j] == 'X' &&
-			((j != 0 && e->map.tab_map[i][j - 1] == '0') ||
-			((j < e->raycasting.x - 1) && e->map.tab_map[i][j + 1] == '0') ||
-			((i < e->raycasting.y - 1) && e->map.tab_map[i + 1][j] == '0') ||
-			(i != 0 && e->map.tab_map[i - 1][j] == '0')))
-			{
-				ft_exit("Error map edges dd", -1);
-			}
-			j++;
-		}
-		i++;
-		j = 0;
-	}
+    e->mlx.ptr = mlx_init();
+    if (!(e->sprite = (t_sprite *)ft_calloc(sizeof(t_sprite),
+                    e->map.nbr_sprite)))
+    {
+        ft_exit("Error push_bmp func malloc sprite", -1);
+    }
+    ft_textures(e);
+    ft_init_sprite(e);
+    e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->axes.axe_x, e->axes.axe_y);
+    e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
+            &e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian);
+    if (!(e->spt.dist_wall = ft_calloc(sizeof(double), e->axes.axe_x)))
+    {
+        ft_exit("Error malloc e->spt.dist_wall", -1);
+    }
+    ft_raycasting(e);
+    ft_sprite(e);
+    ft_bmp(e);
+    ft_exit("Created BMP", 0);
 }
+
+

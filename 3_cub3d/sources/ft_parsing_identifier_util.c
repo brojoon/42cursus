@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_parsing_identifier_util.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/15 17:43:45 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/25 19:52:30 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/26 17:24:07 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/26 18:00:11 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 char        *ft_recup_root(char *line, int i)
 {
@@ -70,19 +70,12 @@ void        ft_recup_axes(t_env *e, char *line)
         ft_exit("Error wrong .cub" ,-1);
 }
 
-int     ft_key_down(int keycode, t_env *e)
+void    ft_recup_map(char *line, t_env *e)
 {
-    if (keycode == 119)
-        e->mvt.up = 1;
-    if (keycode == 115)
-        e->mvt.down = 1;
-    if (keycode == 100)
-        e->mvt.right = 1;
-    if (keycode == 97)
-        e->mvt.left = 1;
-    if (keycode == 65363)
-        e->mvt.rot_right = 1;
-    if (keycode == 65361)
-        e->mvt.rot_left = 1;
-    return (0);
+    e->raycasting.y++;
+    if (!e->map.buff)
+        e->map.buff = ft_strdup("");
+    else
+        e->map.buff = ft_strjoin(e->map.buff, "\n", 1);
+    e->map.buff = ft_strjoin(e->map.buff, line, 1);
 }

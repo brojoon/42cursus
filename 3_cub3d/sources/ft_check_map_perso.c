@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_read_map.c                                      :+:      :+:    :+:   */
+/*   ft_check_map_perso.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 19:15:22 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 10:24:18 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/26 17:30:22 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/26 18:00:17 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 char    **ft_map_size(t_env *e)
 {
@@ -44,16 +44,6 @@ char    **ft_map_size(t_env *e)
           i++;
     }
     return (tmp);
-}
-
-void    ft_recup_map(char *line, t_env *e)
-{
-    e->raycasting.y++;
-    if (!e->map.buff)
-        e->map.buff = ft_strdup("");
-    else
-        e->map.buff = ft_strjoin(e->map.buff, "\n", 1);
-    e->map.buff = ft_strjoin(e->map.buff, line, 1);
 }
 
 void    ft_recup_map_2(t_env *e)
@@ -109,13 +99,13 @@ void    ft_pos_perso_next(t_env *e, int i, int j)
 {
     if (e->map.tab_map[i][j] != '1' && e->map.tab_map[i][j] != '0' &&
                 e->map.tab_map[i][j] != '2' && e->map.tab_map[i][j] != 'X' &&
-                (ft_is_orientation(e, i, j) == 0))
+                (ft_check_perso(e, i, j) == 0))
     {
         ft_exit("Error wrong map pos_perso_next", -1);
     }
     if (e->map.tab_map[i][j] == '2')
         e->map.nbr_sprite += 1;
-    if ((ft_is_orientation(e, i, j) == 1))
+    if ((ft_check_perso(e, i, j) == 1))
     {
         e->map.pos_n_x = j + 0.5;
         e->map.pos_n_y = i + 0.5;
@@ -148,4 +138,20 @@ void    ft_pos_perso(t_env *e)
     {
         ft_exit("Error perso out of range", -1);
     }
+}
+
+int		ft_check_perso(t_env *e, int i, int j)
+{
+	if (e->map.tab_map[i][j] == 'N' || e->map.tab_map[i][j] == 'S' ||
+					e->map.tab_map[i][j] == 'E' || e->map.tab_map[i][j] == 'W')
+	{
+		if (e->identifier.perso == 1)
+		{
+			ft_exit("Error multi perso", -1);
+		}
+		e->orientation.orientation_perso = e->map.tab_map[i][j];
+		return (1);
+	}
+	else
+		return (0);
 }

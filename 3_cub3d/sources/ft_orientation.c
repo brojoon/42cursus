@@ -6,53 +6,11 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:56:00 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/25 19:56:02 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:06:00 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int		ft_is_orientation(t_env *e, int i, int j)
-{
-	if (e->map.tab_map[i][j] == 'N' || e->map.tab_map[i][j] == 'S' ||
-					e->map.tab_map[i][j] == 'E' || e->map.tab_map[i][j] == 'W')
-	{
-		if (e->identifier.perso == 1)
-		{
-			ft_exit("Error multi perso", -1);
-		}
-		e->orientation.orientation_perso = e->map.tab_map[i][j];
-		return (1);
-	}
-	else
-		return (0);
-}
-
-void	ft_orientation_perso(t_env *e)
-{
-	if (e->orientation.orientation_perso == 'N')
-	{
-		e->orientation.dir_x = 0;
-		e->orientation.dir_y = -1;
-	}
-	if (e->orientation.orientation_perso == 'S')
-	{
-		e->orientation.dir_x = 0;	
-		e->orientation.dir_y = 1;
-	}
-	if (e->orientation.orientation_perso == 'W')
-	{
-		e->orientation.dir_x = -1;
-		e->orientation.dir_y = 0;
-	}
-	if (e->orientation.orientation_perso == 'E')
-	{
-		e->orientation.dir_x = 1;
-		e->orientation.dir_y = 0;
-	}
-	e->map.plan_x = -0.66 * e->orientation.dir_y;
-	e->map.plan_y = 0.66 * e->orientation.dir_x;
-}
 
 void	ft_initialize_color_wall(t_env *e)
 {

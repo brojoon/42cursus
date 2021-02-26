@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:28:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 01:44:10 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:09:14 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,15 @@ typedef struct      s_env
     t_spt           spt;
 }                   t_env;
 
-void                ft_parsing_line(t_env *e, char *line);
+void                ft_parsing_line_R(t_env *e, char *line);
+void                ft_parsing_line_NO(t_env *e, char *line, int i);
+void                ft_parsing_line_EA(t_env *e, char *line, int i);
+void                ft_parsing_line_SO(t_env *e, char *line, int i);
+void                ft_parsing_line_WE(t_env *e, char *line, int i);
+void                ft_parsing_line_F(t_env *e, char *line, int i);
+void                ft_parsing_line_S(t_env *e, char *line, int i);
+void                ft_parsing_line_C(t_env *e, char *line, int i);
+void                ft_parsing_line_M(t_env *e, char *line, int i);
 void                ft_read_map(char *argv, t_env *e);
 void                ft_recup_axes(t_env *e, char *line);
 char                *ft_recup_root(char *line, int i);
@@ -216,7 +224,7 @@ void                ft_open_window(t_env *e);
 void                ft_recup_map_2(t_env *e);
 void                ft_pos_perso(t_env *e);
 void                ft_orientation_perso(t_env *e);
-int                 ft_is_orientation(t_env *e, int i, int j);
+int                 ft_check_perso(t_env *e, int i, int j);
 void                ft_raycasting(t_env *e);
 int                 ft_deplacement(t_env *e);
 int                 ft_key_up(int keycode, t_env *e);
@@ -253,16 +261,9 @@ void                ft_check_wall_again(t_env *e);
 int                 is_charset(char *charset, char c);
 void                ft_check_space(t_env *e);
 void                ft_check_resolution_next(t_env *e);
-void                ft_parsing_line_no(t_env *e, char *line, int i);
-void                ft_parsing_line_next(t_env *e, char *line, int i);
-void                ft_parsing_line_so(t_env *e, char *line, int i);
-void                ft_parsing_line_we(t_env *e, char *line, int i);
-void                ft_parsing_line_f(t_env *e, char *line, int i);
-void                ft_parsing_line_s(t_env *e, char *line, int i);
-void                ft_parsing_line_again(t_env *e, char *line, int i);
-char                *ft_delete_space_next(char *str);
 void                ft_check_malloc(t_env *e);
 void                ft_parsing_line_check(char *line);
 float               ft_power(float nb, int power);
+void                ft_push_bmp(t_env *e);
 
 #endif

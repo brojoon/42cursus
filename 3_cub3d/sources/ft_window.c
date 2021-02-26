@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:52:54 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/25 19:52:57 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:33:00 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	ft_raycasting(t_env *e)
 		else
 			e->raycasting.perp_wall_dist = (e->raycasting.map_y - e->map.pos_n_y
 					+ (1 - e->raycasting.step_y) / 2) / e->map.ray_dir_y;
-		ft_color_wall(e);
 		ft_colonne(e, x, y);
 		e->spt.dist_wall[x] = e->raycasting.perp_wall_dist;
 		x++;
