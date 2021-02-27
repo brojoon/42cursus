@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:56:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/25 19:56:50 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 01:18:29 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_textures		ft_info_texture(char *root_texture, t_env *e)
 	if (!(texture.get_data = (int *)mlx_get_data_addr(texture.win_ptr,
 			&texture.bits_per_pixel, &texture.size_line, &texture.endian)))
 	{
-		ft_exit("Error wrong texture info2",-1);
+		ft_exit("Error wrong texture info2", -1);
 	}
 	return (texture);
 }
@@ -98,7 +98,7 @@ void			ft_put_textures(t_env *e, int x)
 	y = e->map.draw_start;
 	while (y++ < e->map.draw_end)
 	{
-		tex_y = (y - e->axes.axe_y / 2 + e->map.hauteur_line / 2) *
+		tex_y = (y - e->window.y / 2 + e->map.hauteur_line / 2) *
 			texture_wall.h / e->map.hauteur_line;
 		if (tex_y < 0)
 			return ;

@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 01:54:39 by hyungjki          #+#    #+#              #
-#    Updated: 2021/02/26 18:34:00 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/02/26 22:18:05 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ LIB = $(addprefix $(LIB_DIR), libft.a)
 MLX = $(addprefix $(MLX_DIR), libmlx_Linux.a)
 
 SRC =	main.c ft_parsing_line.c ft_parsing_identifier.c ft_parsing_identifier2.c \
-		ft_window.c ft_orientation.c ft_parsing_identifier_util.c ft_parsing_identifier_util2.c \
+		ft_raycasting.c ft_parsing_identifier_util.c ft_parsing_identifier_util2.c \
 		ft_check_map_perso.c ft_key_control.c \
-		ft_deplacements.c ft_textures.c ft_bmp.c \
+		ft_key_right_left.c ft_textures.c ft_bmp.c \
 		ft_sprite.c ft_check_error.c \
-		ft_utils_4.c ft_sprite_2.c \
+		ft_window.c ft_sprite2.c \
 		get_next_line.c get_next_line_utils.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
@@ -58,8 +58,9 @@ re: fclean all
 
 leaks:
 	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map2.cub
+	
 bmp: 
-	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map1.cub --save
+	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map2.cub --save
 	
 .PHONY: all clean fclean re leaks bmp
 

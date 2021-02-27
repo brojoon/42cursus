@@ -6,13 +6,13 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:35:56 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 18:03:36 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 09:58:50 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ft_orientation_perso(t_env *e)
+void		ft_orientation_perso(t_env *e)
 {
 	if (e->orientation.orientation_perso == 'N')
 	{
@@ -21,7 +21,7 @@ void	ft_orientation_perso(t_env *e)
 	}
 	if (e->orientation.orientation_perso == 'S')
 	{
-		e->orientation.dir_x = 0;	
+		e->orientation.dir_x = 0;
 		e->orientation.dir_y = 1;
 	}
 	if (e->orientation.orientation_perso == 'W')
@@ -38,7 +38,7 @@ void	ft_orientation_perso(t_env *e)
 	e->map.plan_y = 0.66 * e->orientation.dir_x;
 }
 
-void	ft_check_space(t_env *e)
+void		ft_check_space(t_env *e)
 {
 	int		i;
 	int		j;
@@ -55,7 +55,7 @@ void	ft_check_space(t_env *e)
 			((i < e->raycasting.y - 1) && e->map.tab_map[i + 1][j] == '0') ||
 			(i != 0 && e->map.tab_map[i - 1][j] == '0')))
 			{
-				ft_exit("Error map edges dd", -1);
+				ft_exit("Error map edges", -1);
 			}
 			j++;
 		}
@@ -64,36 +64,36 @@ void	ft_check_space(t_env *e)
 	}
 }
 
-void        ft_parsing_check(t_env *e)
+void		ft_parsing_check(t_env *e)
 {
-    if (ft_check_identifier(e) == 0)
-    {
-        printf("parsing check");
-        ft_exit("Error parsing_check func", -1);
-    }
-    ft_recup_map_2(e);
-    ft_pos_perso(e);
-    ft_orientation_perso(e);
+	if (ft_check_identifier(e) == 0)
+	{
+		printf("parsing check");
+		ft_exit("Error parsing_check func", -1);
+	}
+	ft_recup_map_2(e);
+	ft_pos_perso(e);
+	ft_orientation_perso(e);
 }
 
-void     ft_read_map(char *argv, t_env *e)
-{   
-    int     ret;
-    int     fd;
-    char    *line;
+void		ft_read_map(char *argv, t_env *e)
+{
+	int		ret;
+	int		fd;
+	char	*line;
 
-    line = NULL;
-    if ((fd = open(argv, O_RDONLY)) == -1)
-        ft_exit("Error map open", -1);
-    while ((ret = get_next_line(fd, &line)) == 1)
-    {
-        ft_parsing_line_R(e, line);
-        free(line);
-    }
-    if (ret == -1)
-        ft_exit("get_next_line Error", -1);
-    ft_parsing_line_R(e, line);
-    free(line);
-    close(fd);
-    ft_parsing_check(e);
+	line = NULL;
+	if ((fd = open(argv, O_RDONLY)) == -1)
+		ft_exit("Error map open", -1);
+	while ((ret = get_next_line(fd, &line)) == 1)
+	{
+		ft_parsing_line_r(e, line);
+		free(line);
+	}
+	if (ret == -1)
+		ft_exit("get_next_line Error", -1);
+	ft_parsing_line_r(e, line);
+	free(line);
+	close(fd);
+	ft_parsing_check(e);
 }

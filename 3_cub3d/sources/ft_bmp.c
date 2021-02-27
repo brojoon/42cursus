@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 00:29:45 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 13:10:24 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 10:14:08 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ void	ft_image_bmp(t_env *e, t_bmp *bmp)
 	int y;
 
 	j = -1;
-	while (++j < e->axes.axe_y)
+	while (++j < e->window.y)
 	{
 		i = -1;
-		while (++i < e->axes.axe_x)
+		while (++i < e->window.x)
 		{
 			x = i;
-			y = e->axes.axe_y - 1 - j;
-			bmp->color = e->mlx.get_data[x + y * e->axes.axe_x];
+			y = e->window.y - 1 - j;
+			bmp->color = e->mlx.get_data[x + y * e->window.x];
 			write(bmp->fd, &bmp->color, 3);
 		}
 		i = -1;
-		while (++i < (4 - (e->axes.axe_x * 3) % 4) % 4)
+		while (++i < (4 - (e->window.x * 3) % 4) % 4)
 			write(bmp->fd, &bmp->pad, 1);
 	}
 }
@@ -64,8 +64,8 @@ void	ft_complete_header(t_env *e, t_bmp *bmp)
 	while (i < 3)
 		bmp->pad[i++] = 0;
 	set_header(&bmp->header[2], bmp->size);
-	set_header(&bmp->info[4], e->axes.axe_x);
-	set_header(&bmp->info[8], e->axes.axe_y);
+	set_header(&bmp->info[4], e->window.x);
+	set_header(&bmp->info[8], e->window.y);
 	write(bmp->fd, bmp->header, 14);
 	write(bmp->fd, bmp->info, 40);
 }
@@ -84,27 +84,25 @@ void	ft_bmp(t_env *e)
 	close(bmp.fd);
 }
 
-void    ft_push_bmp(t_env *e)
+void	ft_push_bmp(t_env *e)
 {
-    e->mlx.ptr = mlx_init();
-    if (!(e->sprite = (t_sprite *)ft_calloc(sizeof(t_sprite),
-                    e->map.nbr_sprite)))
-    {
-        ft_exit("Error push_bmp func malloc sprite", -1);
-    }
-    ft_textures(e);
-    ft_init_sprite(e);
-    e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->axes.axe_x, e->axes.axe_y);
-    e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
-            &e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian);
-    if (!(e->spt.dist_wall = ft_calloc(sizeof(double), e->axes.axe_x)))
-    {
-        ft_exit("Error malloc e->spt.dist_wall", -1);
-    }
-    ft_raycasting(e);
-    ft_sprite(e);
-    ft_bmp(e);
-    ft_exit("Created BMP", 0);
+	e->mlx.ptr = mlx_init();
+	if (!(e->sprite = (t_sprite *)ft_calloc(sizeof(t_sprite),
+			e->map.nbr_sprite)))
+	{
+		ft_exit("Error push_bmp func malloc sprite", -1);
+	}
+	ft_textures(e);
+	ft_coord_sprite(e);
+	e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->window.x, e->window.y);
+	e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
+			&e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian);
+	if (!(e->spt.dist_wall = ft_calloc(sizeof(double), e->window.x)))
+	{
+		ft_exit("Error malloc e->spt.dist_wall", -1);
+	}
+	ft_raycasting(e);
+	ft_sprite(e);
+	ft_bmp(e);
+	ft_exit("Created BMP", 0);
 }
-
-

@@ -5,119 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/25 19:52:54 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 18:33:00 by hyungjki         ###   ########.fr       */
+/*   Created: 2021/02/15 21:07:53 by hyungjki          #+#    #+#             */
+/*   Updated: 2021/02/27 10:12:22 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ft_init_raycasting(t_env *e, int x)
+void		ft_init_image(t_env *e)
 {
-	e->map.camera_x = 2 * x / (double)(e->axes.axe_x) - 1;
-	e->map.ray_dir_x = e->orientation.dir_x + e->map.plan_x * e->map.camera_x;
-	e->map.ray_dir_y = e->orientation.dir_y + e->map.plan_y * e->map.camera_x;
-	e->raycasting.delta_x = fabs(1.0 / e->map.ray_dir_x);
-	e->raycasting.delta_y = fabs(1.0 / e->map.ray_dir_y);
-	e->raycasting.map_x = (int)e->map.pos_n_x;
-	e->raycasting.map_y = (int)e->map.pos_n_y;
+	if (!(e->mlx.new_image = mlx_new_image(e->mlx.ptr,
+				e->window.x, e->window.y)))
+	{
+		ft_exit("Error mlx_new_image", -1);
+	}
+	if (!(e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
+			&e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian)))
+	{
+		ft_exit("Error mlx_get_data_addr", -1);
+	}
+	if (!(e->spt.dist_wall = ft_calloc(sizeof(double), e->window.x)))
+	{
+		ft_exit("Error malloc e->spt.dist_wall", -1);
+	}
+	ft_raycasting(e);
+	ft_sprite(e);
+	mlx_put_image_to_window(e->mlx.ptr, e->mlx.win_ptr,
+			e->mlx.new_image, 0, 0);
+	mlx_do_sync(e->mlx.ptr);
+	mlx_destroy_image(e->mlx.ptr, e->mlx.new_image);
 }
 
-void	ft_raycasting_first(t_env *e)
+int			ft_deplacement(t_env *e)
 {
-	if (e->map.ray_dir_x < 0)
-	{
-		e->raycasting.step_x = -1;
-		e->raycasting.side_dist_x = (e->map.pos_n_x - e->raycasting.map_x)
-			* e->raycasting.delta_x;
-	}
-	else
-	{
-		e->raycasting.step_x = 1;
-		e->raycasting.side_dist_x = (e->raycasting.map_x + 1.0 - e->map.pos_n_x)
-			* e->raycasting.delta_x;
-	}
-	if (e->map.ray_dir_y < 0)
-	{
-		e->raycasting.step_y = -1;
-		e->raycasting.side_dist_y = (e->map.pos_n_y - e->raycasting.map_y)
-			* e->raycasting.delta_y;
-	}
-	else
-	{
-		e->raycasting.step_y = 1;
-		e->raycasting.side_dist_y = (e->raycasting.map_y + 1.0 - e->map.pos_n_y)
-			* e->raycasting.delta_y;
-	}
+	e->mvt.vit_rot = 0.020;
+	ft_mv_up(e);
+	ft_mv_down(e);
+	ft_mv_left(e);
+	ft_mv_right(e);
+	ft_init_image(e);
+	return (0);
 }
 
-void	ft_no_wall(t_env *e)
+void		ft_init_window(t_env *e)
 {
-	int	hit;
-
-	hit = 0;
-	while (hit == 0)
+	if (!(e->mlx.ptr = mlx_init()))
 	{
-		if (e->raycasting.side_dist_x < e->raycasting.side_dist_y)
-		{
-			e->raycasting.side_dist_x += e->raycasting.delta_x;
-			e->raycasting.map_x += e->raycasting.step_x;
-			e->raycasting.side = 0;
-		}
-		else
-		{
-			e->raycasting.side_dist_y += e->raycasting.delta_y;
-			e->raycasting.map_y += e->raycasting.step_y;
-			e->raycasting.side = 1;
-		}
-		if (e->map.tab_map[e->raycasting.map_y][e->raycasting.map_x] == '1')
-			hit = 1;
+		ft_exit("Error mlx_init", -1);
 	}
-}
-
-void	ft_colonne(t_env *e, int x, int y)
-{
-	e->map.hauteur_line = (e->axes.axe_y / e->raycasting.perp_wall_dist);
-	e->map.draw_start = -e->map.hauteur_line / 2 + e->axes.axe_y / 2;
-	e->map.draw_end = e->map.hauteur_line / 2 + e->axes.axe_y / 2;
-	if (e->map.draw_start < 0)
-		e->map.draw_start = 0;
-	if (e->map.draw_end >= e->axes.axe_y)
-		e->map.draw_end = e->axes.axe_y - 1;
-	ft_put_textures(e, x);
-	y = 0;
-	if (e->map.draw_end < 0)
-		e->map.draw_end = e->axes.axe_y;
-	y = e->map.draw_end;
-	while (y < e->axes.axe_y)
+	ft_check_resolution_next(e);
+	if (!(e->mlx.win_ptr = mlx_new_window(e->mlx.ptr, e->window.x,
+			e->window.y, "cub3D")))
 	{
-		e->mlx.get_data[x + y * (e->mlx.size_line / 4)] = e->colors.color_sol;
-		e->mlx.get_data[x + (e->axes.axe_y - y - 1) * (e->mlx.size_line / 4)] =
-			e->colors.color_plafond;
-		y++;
+		ft_exit("Error mlx_new_window", -1);
 	}
-}
-
-void	ft_raycasting(t_env *e)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (x < e->axes.axe_x)
-	{
-		ft_init_raycasting(e, x);
-		ft_raycasting_first(e);
-		ft_no_wall(e);
-		if (e->raycasting.side == 0)
-			e->raycasting.perp_wall_dist = (e->raycasting.map_x - e->map.pos_n_x
-					+ (1 - e->raycasting.step_x) / 2) / e->map.ray_dir_x;
-		else
-			e->raycasting.perp_wall_dist = (e->raycasting.map_y - e->map.pos_n_y
-					+ (1 - e->raycasting.step_y) / 2) / e->map.ray_dir_y;
-		ft_colonne(e, x, y);
-		e->spt.dist_wall[x] = e->raycasting.perp_wall_dist;
-		x++;
-	}
+	ft_sprite_malloc(e);
+	ft_textures(e);
+	ft_coord_sprite(e);
+	ft_check_wall(e);
+	ft_check_space(e);
+	mlx_do_key_autorepeatoff(e->mlx.ptr);
+	mlx_hook(e->mlx.win_ptr, 2, 1, &ft_key_down, e);
+	mlx_hook(e->mlx.win_ptr, 3, 2, &ft_key_up, e);
+	mlx_hook(e->mlx.win_ptr, 33, 0, ft_exit, "ESC");
+	mlx_loop_hook(e->mlx.ptr, &ft_deplacement, e);
+	mlx_loop(e->mlx.ptr);
 }

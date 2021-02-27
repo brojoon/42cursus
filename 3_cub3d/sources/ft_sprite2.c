@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sprite_2.c                                      :+:      :+:    :+:   */
+/*   ft_sprite2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:56:30 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 18:13:26 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 09:46:58 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    ft_check_malloc(t_env *e)
+void	ft_sprite_malloc(t_env *e)
 {
-    if (!(e->sprite = (t_sprite *)ft_calloc(e->map.nbr_sprite,
-        sizeof(t_sprite))))
-    {
-        ft_exit("Error sprite malloc failed", -1);
-    }
+	if (!(e->sprite = (t_sprite *)ft_calloc(e->map.nbr_sprite,
+		sizeof(t_sprite))))
+	{
+		ft_exit("Error sprite malloc failed", -1);
+	}
 }
 
 void	ft_sprite_distance(t_env *e)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < e->map.nbr_sprite)
