@@ -6,18 +6,18 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 05:13:34 by hyungjki          #+#    #+#             */
-/*   Updated: 2020/12/31 03:29:50 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 21:54:14 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 size_t	ft_strlen(const char *s)
 {
 	size_t i;
 
 	i = 0;
-	while (s[i])
+	while (s != NULL && s[i])
 		i++;
 	return (i);
 }

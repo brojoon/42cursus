@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 17:30:22 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/27 19:55:40 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 21:34:54 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,12 @@ int				ft_check_perso(t_env *e, int i, int j)
 {
 	if (e->map.tab_map[i][j] == 'N' || e->map.tab_map[i][j] == 'S' ||
 					e->map.tab_map[i][j] == 'E' || e->map.tab_map[i][j] == 'W')
-	{
+	{	
+		if (e->map.tab_map[i + 1][j] == 'X' || e->map.tab_map[i - 1][j] == 'X' ||
+			e->map.tab_map[i][j + 1] == 'X' || e->map.tab_map[i][j - 1] == 'X')
+		{
+			ft_exit("Error perso no wall", -1);
+		}
 		if (e->identifier.perso == 1)
 		{
 			ft_exit("Error multi perso", -1);
