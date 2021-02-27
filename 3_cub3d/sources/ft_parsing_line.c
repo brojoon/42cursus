@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:35:56 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/27 09:58:50 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:55:51 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void		ft_parsing_check(t_env *e)
 {
 	if (ft_check_identifier(e) == 0)
 	{
-		printf("parsing check");
 		ft_exit("Error parsing_check func", -1);
 	}
 	ft_recup_map_2(e);

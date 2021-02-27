@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:56:48 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/27 01:18:29 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:55:58 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void			ft_put_textures(t_env *e, int x)
 	y = e->map.draw_start;
 	while (y++ < e->map.draw_end)
 	{
-		tex_y = (y - e->window.y / 2 + e->map.hauteur_line / 2) *
-			texture_wall.h / e->map.hauteur_line;
+		tex_y = (y - e->window.y / 2 + e->map.texture_line / 2) *
+			texture_wall.h / e->map.texture_line;
 		if (tex_y < 0)
 			return ;
 		e->mlx.get_data[x + y * (e->mlx.size_line / 4)] =

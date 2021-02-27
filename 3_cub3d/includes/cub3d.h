@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 19:28:53 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/27 10:15:26 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 20:00:37 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct		s_map
 	double			camera_x;
 	double			ray_dir_x;
 	double			ray_dir_y;
-	int				hauteur_line;
+	int				texture_line;
 	int				draw_start;
 	int				draw_end;
 	int				nbr_sprite;
@@ -231,7 +231,7 @@ int					ft_key_up(int keycode, t_env *e);
 int					ft_key_down(int keycode, t_env *e);
 void				ft_init_image(t_env *e);
 void				ft_until_wall(t_env *e);
-void				ft_colonne(t_env *e, int x, int y);
+void				ft_draw_texture(t_env *e, int x, int y);
 void				ft_textures(t_env *e);
 void				ft_put_textures(t_env *e, int x);
 void				ft_bmp(t_env *e);

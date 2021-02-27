@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 01:54:39 by hyungjki          #+#    #+#              #
-#    Updated: 2021/02/26 22:18:05 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/02/27 20:11:19 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ leaks:
 	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map2.cub
 	
 bmp: 
-	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map2.cub --save
+	valgrind --track-origins=yes --leak-check=full --error-limit=no ./cub3D ./map1.cub --save
 	
 .PHONY: all clean fclean re leaks bmp
 

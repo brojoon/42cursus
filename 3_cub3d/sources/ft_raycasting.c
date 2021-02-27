@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:52:54 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/26 22:09:39 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/02/27 20:01:53 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void	ft_until_wall(t_env *e)
 	}
 }
 
-void	ft_colonne(t_env *e, int x, int y)
+void	ft_draw_texture(t_env *e, int x, int y)
 {
-	e->map.hauteur_line = (e->window.y / e->raycasting.perp_wall_dist);
-	e->map.draw_start = -e->map.hauteur_line / 2 + e->window.y / 2;
-	e->map.draw_end = e->map.hauteur_line / 2 + e->window.y / 2;
+	e->map.texture_line = (e->window.y / e->raycasting.perp_wall_dist);
+	e->map.draw_start = -e->map.texture_line / 2 + e->window.y / 2;
+	e->map.draw_end = e->map.texture_line / 2 + e->window.y / 2;
 	if (e->map.draw_start < 0)
 		e->map.draw_start = 0;
 	if (e->map.draw_end >= e->window.y)
@@ -116,7 +116,7 @@ void	ft_raycasting(t_env *e)
 		else
 			e->raycasting.perp_wall_dist = (e->raycasting.map_y - e->map.pos_n_y
 					+ (1 - e->raycasting.step_y) / 2) / e->map.ray_dir_y;
-		ft_colonne(e, x, y);
+		ft_draw_texture(e, x, y);
 		e->spt.dist_wall[x] = e->raycasting.perp_wall_dist;
 		x++;
 	}
