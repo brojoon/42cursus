@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 02:16:09 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/01/26 22:41:38 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/03/09 10:22:10 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		get_num_len(int n)
 	return ((-10 < n && n < 10) ? 1 : 1 + get_num_len(n / 10));
 }
 
-void	print_uint_num(t_option *ot, unsigned int n)
+void	print_uint_num(t_option *ot, int n)
 {
 	if (n == 0 && ot->precision == FALSE)
 	{
@@ -66,12 +66,12 @@ int		print_int(va_list ap, t_option *ot)
 int		print_uint(va_list ap, t_option *ot)
 {
 	int				cnt;
-	unsigned int	num;
+	int				num;
 	int				len;
 	int				ulen;
 
-	num = va_arg(ap, unsigned int);
-	ulen = (num >= 1000000000) ? 10 : get_num_len(num);
+	num = va_arg(ap, int);
+	ulen = get_num_len(num);
 	len = ((ot->precision > ulen) ? ot->precision : ulen);
 	cnt = len;
 	if (ot->sort != LEFT)

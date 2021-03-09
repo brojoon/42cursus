@@ -6,7 +6,7 @@
 /*   By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 08:46:49 by hyungjki          #+#    #+#             */
-/*   Updated: 2021/02/08 03:52:29 by hyungjki         ###   ########.fr       */
+/*   Updated: 2021/03/09 10:21:08 by hyungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void				print_hex_num(t_option *ot,
 					unsigned int hex_num, int is_alpha);
 int					print_hex(va_list ap, t_option *ot, int is_alpha);
 int					get_num_len(int n);
-void				print_uint_num(t_option *ot, unsigned int n);
+void				print_uint_num(t_option *ot, int n);
 int					right_sort(t_option *ot, int num, int len);
 int					print_int(va_list ap, t_option *ot);
 int					print_uint(va_list ap, t_option *ot);
