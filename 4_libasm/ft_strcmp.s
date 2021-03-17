@@ -1,7 +1,6 @@
 			section .test
-			global	_ft_strcmp
-	
-_ft_strcmp:
+			global	ft_strcmp
+ft_strcmp:
 		cmp		rdi, 0
 		jz		is_null
 		cmp		rsi, 0
@@ -27,7 +26,7 @@ increment:
 		jmp		compare
 compare_over:
 		mov		dl, BYTE [rdi + rcx]
-		sub		dl, BYTES [rsi + rcx]
+		sub		dl, BYTE [rsi + rcx]
 		cmp		dl, 0
 		jl		small
 		jb		big

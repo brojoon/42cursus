@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 03:40:47 by hyungjki          #+#    #+#              #
-#    Updated: 2021/03/17 05:53:33 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/03/17 08:56:15 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ TEST = test_case
 TEST_BONUS = test_case_bonus
 
 SRCS =	ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_strdup.s ft_read.s
-BONUS_SRCS = ft_list_push_front.s ft_list_size_bonus.s
+BONUS_SRCS = ft_list_push_front_bonus.s ft_list_size_bonus.s
 
 OBJS = $(SRCS:.s=.o)
 BONUS_OBJS = $(BONUS_SRCS:.s=.o)

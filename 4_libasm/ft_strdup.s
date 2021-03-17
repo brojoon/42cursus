@@ -1,13 +1,13 @@
 			section	.text
-			global	_ft_strdup
-			extern	___error
-			extern	_malloc
+			global	ft_strdup
+			extern	error
+			extern	malloc
 
-_ft_strdup:
+ft_strdup:
 			cmp		rdi, 0
-			jz		is_null
+			jz		error_null
 			xor		rcx, rcx
-			jmp		len_loop
+			jmp		copy_allocate
 count_len:
 			inc		rcx
 copy_allocate:
@@ -16,31 +16,30 @@ copy_allocate:
 			inc		rcx
 			push	rdi
 			mov		rdi, rcx
-			call	_malloc
+			call	malloc
 			jc		allocate_error
 			cmp		rax, 0
-			jz		error
+			jz		error_null
 			pop		rsi
 			mov		rdi, rax
 			xor		rax, rax
 			xor		rcx, rcx
-			xor		rdx, rdx
 			jmp		duplicate
 duplicate_inc:
 			inc		rcx
 duplicate:
 			mov		bl, BYTE [rsi + rcx]
-			mov		BYTE [rdi + rax], bl
+			mov		BYTE [rdi + rcx], bl
 			cmp		bl, 0
 			jnz		duplicate_inc
 			mov		rax, rdi
 			ret
 allocate_error:
 			push	rax
-			call	___error
+			call	error
 			xor		rdx, rdx
 			pop		rdx
 			mov		[rax], rdx
-error:
+error_null:
 			xor		rax, rax
 			ret

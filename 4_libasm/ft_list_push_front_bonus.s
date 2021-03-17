@@ -1,14 +1,16 @@
 			section	.text
-			global	_ft_list_push_front
-			extern	_malloc
-			extern	___error
+			global	ft_list_push_front
+			extern	malloc
+			extern	error
 
-_ft_list_push_front:
+ft_list_push_front:
 			push	rdi
+			push	rsi 
 			mov		rdi, 16
 			xor		rax, rax
-			call	_malloc
+			call	malloc
 			jc		error_allocate
+			pop		rsi
 			pop		rdi
 			cmp		rax, 0
 			jz		result
@@ -19,7 +21,7 @@ _ft_list_push_front:
 			jmp		result
 error_allocate:
 			push	rax
-			call	___error
+			call	error
 			xor		rdx, rdx
 			pop		rdx
 			mov		[rax], rdx
