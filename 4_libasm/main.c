@@ -68,5 +68,9 @@ int main(void)
 	}
 	ft_write(fd, "hello ft_write", 14);
 	close(fd);
+	char *str1 = "hellodd1";
+	char *str2 = "hello0o";
+	printf("strcmp(str1, str2) : %d\n", strcmp(str1, str2));
+	printf("ft_strcmp(str1, str2) : %d\n", ft_strcmp(str1, str2));
 	return (0);
 }

@@ -10,7 +10,7 @@ ft_strcmp:
 		jmp		compare
 is_null:
 		cmp		rdi, rsi
-		jg		big
+		jl		big
 		je		equal
 		jmp		small
 compare:
@@ -18,8 +18,8 @@ compare:
 		jz		compare_over
 		cmp		BYTE [rsi + rcx], 0
 		jz		compare_over
-		mov		dl, BYTE [rsi + rcx] 
-		cmp		dl, BYTE [rdi + rcx]
+		mov		dl, BYTE [rdi + rcx] 
+		cmp		dl, BYTE [rsi + rcx]
 		jne		compare_over
 increment:
 		inc		rcx
@@ -27,9 +27,8 @@ increment:
 compare_over:
 		mov		dl, BYTE [rdi + rcx]
 		sub		dl, BYTE [rsi + rcx]
-		cmp		dl, 0
-		jl		small
-		jb		big
+		movsx	rax, dl
+		ret
 equal:
 		mov		rax, 0
 		ret
@@ -39,5 +38,6 @@ big:
 small:
 		mov		rax, -1
 		ret
+
 
 

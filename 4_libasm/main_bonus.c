@@ -19,7 +19,7 @@ char	*ft_strdup(char const *s1);
 char	*ft_strcpy(char *dst, char const *src);
 
 void	ft_list_push_front(t_list **begin_list, void *data);
-int		ft_list_size(t_list *begin_list); 
+int		ft_list_size(t_list *begin_list);
 
 int main(void)
 {
@@ -34,6 +34,8 @@ int main(void)
 	list3.data = "list3";
 	list3.next = NULL;
 
+	printf("list size: 3 / %d\n", ft_list_size(&list1));
+	printf("list size: 3 / %d\n", ft_list_size(&list1));
 	printf("list size: 3 / %d\n", ft_list_size(&list1));
 	printf("list size: 2 / %d\n", ft_list_size(&list2));
 	printf("list size: 1 / %d\n", ft_list_size(&list3));

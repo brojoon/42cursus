@@ -1,7 +1,6 @@
 			section .text
 			global ft_write
 			extern __errno_location
-
 ft_write:
 		mov	rax, 1
 		syscall
@@ -15,5 +14,3 @@ error_read:
 		pop		qword [rax]
 		mov		rax, -1
 		ret
-
-			
