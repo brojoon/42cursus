@@ -46,28 +46,27 @@ int main(void)
 	}
 	printf("ft_read() how many bytes was readed: %ld\n", ft_read(fd, ft_buf, 10000));
 	close(fd);
-	printf("strcmp(makefile, ft_makefile) : %d strlen(ft_makefile) : %ld\n",
+	printf("strcmp(buf, ft_buf) : %d strlen(buf) : %ld\n",
 			strcmp(buf, ft_buf), strlen(buf));
-	printf("ft_strcmp(makefile, ft_makefile) : %d ft_strlen(ft_makefile) : %d\n",
+	printf("ft_strcmp(buf, ft_buf) : %d ft_strlen(ft_buf) : %d\n",
 			ft_strcmp(buf, ft_buf), ft_strlen(ft_buf));
 	dupstr = strdup(buf);
 	ft_dupstr = ft_strdup(ft_buf);
 	printf("strcmp(dupstr, ft_dupstr) : %d\n", strcmp(dupstr, ft_dupstr));
 	printf("ft_strcmp(dupstr, ft_dupstr) : %d\n", ft_strcmp(dupstr, ft_dupstr));
-	if ((fd = open("test_write.txt", O_CREAT | O_RDWR)) == 0)
+	if ((fd = open("test_write.txt", O_RDWR)) == 0)
 	{
 		printf("opne failed");
 		return (0);
 	}
 	write(fd, "hello write", 11);
 	close(fd);
-	if ((fd = open("test_ft_write.txt", O_CREAT | O_RDWR)) == 0)
+	if ((fd = open("test_ft_write.txt", O_RDWR)) == 0)
 	{
 		printf("opne failed");
 		return (0);
 	}
 	ft_write(fd, "hello ft_write", 14);
 	close(fd);
-
 	return (0);
 }

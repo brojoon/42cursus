@@ -1,6 +1,5 @@
 			section	.text
 			global	ft_strdup
-			extern	error
 			extern	malloc
 
 ft_strdup:
@@ -17,7 +16,6 @@ copy_allocate:
 			push	rdi
 			mov		rdi, rcx
 			call	malloc
-			jc		allocate_error
 			cmp		rax, 0
 			jz		error_null
 			pop		rsi
@@ -34,12 +32,6 @@ duplicate:
 			jnz		duplicate_inc
 			mov		rax, rdi
 			ret
-allocate_error:
-			push	rax
-			call	error
-			xor		rdx, rdx
-			pop		rdx
-			mov		[rax], rdx
 error_null:
 			xor		rax, rax
 			ret

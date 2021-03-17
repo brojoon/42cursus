@@ -1,19 +1,19 @@
 			section .text
 			global ft_write
-			extern error
+			extern __errno_location
 
 ft_write:
-			mov	rax, 0x2000004
-			syscall
-			jc	error_read
-			ret
+		mov	rax, 1
+		syscall
+		cmp	rax, 0
+		jl error_read
+		ret
 error_read:
-			push	rax
-			call	error
-			xor		rdx, rdx
-			pop		rdx
-			mov		[rax], rdx
-			mov		rax, -1
-			ret
+		neg		rax
+		push	rax
+		call	__errno_location
+		pop		qword [rax]
+		mov		rax, -1
+		ret
 
 			

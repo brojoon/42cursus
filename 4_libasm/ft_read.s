@@ -1,16 +1,16 @@
 			section	.text
 			global	ft_read
-			extern	error
+			extern	__errno_location
 ft_read:
-		mov		rax, 0x2000003
+		xor		rax, rax
 		syscall
-		jc		error_read
+		cmp		rax, 0
+		jl		error_read
 		ret
 error_read:
+		neg		rax
 		push	rax
-		call	error
-		xor		rdx, rdx
-		pop		rdx
-		mov		[rax], rdx
+		call	__errno_location
+		pop		qword[rax]
 		mov		rax, -1
 		ret

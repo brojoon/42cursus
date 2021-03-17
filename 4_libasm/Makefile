@@ -6,7 +6,7 @@
 #    By: hyungjki <hyungjki@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 03:40:47 by hyungjki          #+#    #+#              #
-#    Updated: 2021/03/17 08:56:15 by hyungjki         ###   ########.fr        #
+#    Updated: 2021/03/17 12:55:04 by hyungjki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,19 +27,26 @@ BONUS_SRCS = ft_list_push_front_bonus.s ft_list_size_bonus.s
 
 OBJS = $(SRCS:.s=.o)
 BONUS_OBJS = $(BONUS_SRCS:.s=.o)
+ifdef WITH_BONUS
+		OBJS_FILES = $(BONUS_OBJS)
+else
+		OBJS_FILES = $(OBJS)
+endif
 
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJS_FILES)
+ifdef WITH_BONUS
+	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
+else
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+endif
 
 %.o: %.s
 	$(NA) $(NA_FLAGS) $< -o $@
 
 all: $(NAME)
 
-bonus:	$(OBJS) $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BONUS_OBJS)
-
+bonus:
+		make WITH_BONUS=1 all
 test: $(NAME)
 	$(CC) $(FLAGS) -o $(TEST) main.c $(NAME)
 	./$(TEST)
