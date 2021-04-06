@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: mysql
+spec:
+ storageClassName: manual
+ capacity:
+  storage: 1Gi
+ accessModes: 
+   - ReadWriteOnce
+ hostPath:
+  path: /data/mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: mysql
+spec:
+ selector:
+  app: mysql
+ type: ClusterIP
+ ports:
+  - port: 3306
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: mysql
+spec:
+ storageClassName: manual
+ accessModes:
+ - ReadWriteOnce
+ resources:
+  requests:
+   storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: mysql
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: mysql
+ template:
+  metadata:
+   labels:
+    app: mysql
+  spec:
+   containers:
+    -
+     image: image-mysql
+     imagePullPolicy: Never
+     name: mysql
+     ports:
+     - containerPort: 3306
+     volumeMounts:
+      -
+       mountPath: /var/lib/mysql
+       name: mysql-db
+   volumes:
+    -
+     name: mysql-db
+     persistentVolumeClaim:
+      claimName: mysql
