@@ -30,3 +30,18 @@ spec:
    - name: phpmyadmin
      image: image-phpmyadmin
      imagePullPolicy: Never
+     livenessProbe:
+       httpGet:
+         path: /
+         port: 5000
+         scheme: HTTP
+       initialDelaySecond: 5
+       periodSeconds: 15
+       timeoutSeconds: 5
+     readinessProbe:
+       httpGet:
+         path: /
+         port: 5000
+         scheme: HTTP
+       initialDelaySeconds: 5
+       timeoutSeconds: 1
