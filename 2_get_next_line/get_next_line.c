@@ -30,7 +30,7 @@ int	catch_end(char **line, char **memo)
 	return (END);
 }
 
-int	catch_read(char **line, char **memo)
+int	catch_copy(char **line, char **memo)
 {
 	int		len;
 	int		cur;
@@ -38,7 +38,8 @@ int	catch_read(char **line, char **memo)
 	len = 0;
 	while ((*memo)[len] && (*memo)[len] != '\n')
 		len++;
-	if (!(*line = (char *)malloc(len + 1)))
+	*line = (char *)malloc(len + 1);
+	if (!(*line))
 		return (catch_error(memo));
 	cur = -1;
 	while (++cur < len)
@@ -56,6 +57,21 @@ int	catch_read(char **line, char **memo)
 	return (READ);
 }
 
+void	catch_read(char **memo, ssize_t *len, char **buff, char **tmp)
+{
+	while (*memo && (!(ft_strchr(*memo, '\n'))))
+	{
+		*len = read(fd, *buff, BUFFER_SIZE);
+		if (len <= 0)
+			break ;
+		(*buff)[(*len)] = '\0';
+		*tmp = ft_strjoin(memo, *buff);
+		if (*memo)
+			free(*memo);
+		*memo = *tmp;
+	}
+}
+
 int	get_next_line(int fd, char **line)
 {
 	ssize_t		len;
@@ -63,24 +79,18 @@ int	get_next_line(int fd, char **line)
 	static char	*memo[FD_MAX];
 	char		*tmp;
 
+	buff = (char *)malloc(BUFFER_SIZE + 1);
 	if (fd < 0 || fd >= FD_MAX || !line || BUFFER_SIZE <= 0 || \
-		!(buff = (char *)malloc(BUFFER_SIZE + 1)) || read(fd, buff, 0))
+		read(fd, buff, 0) || !(buff))
 		return (ERROR);
-	if (!memo[fd] && !(len = 0))
+	if (!memo[fd])
 		memo[fd] = ft_strdup();
-	while (memo[fd] && (!(ft_strchr(memo[fd], '\n'))) && \
-			((len = read(fd, buff, BUFFER_SIZE)) > 0))
-	{
-		buff[len] = '\0';
-		tmp = ft_strjoin(memo[fd], buff);
-		if (memo[fd])
-			free(memo[fd]);
-		memo[fd] = tmp;
-	}
+	catch_read(&(memo[fd]), &len, &buff, &tmp);
 	free(buff);
-	if (((!(buff = NULL)) && len < 0) || memo[fd] == NULL)
+	buff = NULL;
+	if (len < 0 || memo[fd] == NULL)
 		return (catch_error(&(memo[fd])));
 	if (len == 0 && memo[fd][0] == '\0')
 		return (catch_end(line, &(memo[fd])));
-	return (catch_read(line, &(memo[fd])));
+	return (catch_copy(line, &(memo[fd])));
 }
