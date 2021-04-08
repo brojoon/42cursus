@@ -62,10 +62,10 @@ void	catch_read(char **memo, ssize_t *len, char **buff, char **tmp)
 	while (*memo && (!(ft_strchr(*memo, '\n'))))
 	{
 		*len = read(fd, *buff, BUFFER_SIZE);
-		if (len <= 0)
+		if (*len <= 0)
 			break ;
 		(*buff)[(*len)] = '\0';
-		*tmp = ft_strjoin(memo, *buff);
+		*tmp = ft_strjoin(*memo, *buff);
 		if (*memo)
 			free(*memo);
 		*memo = *tmp;
