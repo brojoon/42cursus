@@ -83,7 +83,10 @@ int	get_next_line(int fd, char **line)
 	buff = (char *)malloc(BUFFER_SIZE + 1);
 	if (fd < 0 || fd >= FD_MAX || !line || BUFFER_SIZE <= 0 || \
 		read(fd, buff, 0) || !(buff))
+	{
+		free(buff);
 		return (ERROR);
+	}
 	if (!memo[fd])
 		memo[fd] = ft_strdup();
 	catch_read(fd, &(memo[fd]), &len, &buff);
