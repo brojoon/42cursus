@@ -40,7 +40,7 @@ void	set_numbers(char **result, long long *numbers, long long n)
 	}
 	if (n < 0)
 		*numbers = -n;
-	if (n > 0)
+	if (n >= 0)
 		*numbers = n;
 }
 
