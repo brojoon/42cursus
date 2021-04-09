@@ -70,7 +70,7 @@ static size_t	init_split(char **result, const char *s, char c, size_t len)
 	return (0);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	size_t	len;

@@ -16,7 +16,9 @@ static int	len_th(long long n)
 {
 	long long	result;
 
-	result = ((n <= 0) ? 1 : 0);
+	result = 0;
+	if (n <= 0)
+		result = 1;
 	if (n < 0)
 		n *= -1;
 	while (n)
@@ -27,7 +29,22 @@ static int	len_th(long long n)
 	return (result);
 }
 
-char		*ft_itoa(int n)
+void	set_numbers(char **result, long long *numbers, long long n)
+{
+	if (n <= 0)
+	{
+		if (n == 0)
+			(*result)[0] = '0';
+		else
+			(*result)[0] = '-';
+	}
+	if (n < 0)
+		*numbers = -n;
+	if (n > 0)
+		*numbers = n;
+}
+
+char	*ft_itoa(int n)
 {
 	char		*result;
 	long long	numbers;
@@ -38,9 +55,7 @@ char		*ft_itoa(int n)
 	{
 		len = len_th(n);
 		result[len--] = '\0';
-		if (n <= 0)
-			result[0] = (n == 0) ? '0' : '-';
-		numbers = n < 0 ? -(long long)n : (long long)n;
+		set_numbers(&result, &numbers, n);
 		while (numbers)
 		{
 			result[len--] = numbers % 10 + '0';

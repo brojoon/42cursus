@@ -18,7 +18,7 @@ static	int	is_blank(char a)
 	|| a == '\r' || a == '\n' || a == ' ');
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int				number;
 	unsigned char	*ptr;
@@ -30,7 +30,11 @@ int			ft_atoi(const char *str)
 	while (is_blank(*ptr))
 		ptr++;
 	if (*ptr == '-' || *ptr == '+')
-		sign *= (*ptr++ == '-') ? -1 : 1;
+	{
+		if (*ptr == '-')
+			sign *= -1;
+		ptr++;
+	}
 	while (*ptr >= '0' && *ptr <= '9')
 		number = number * 10 + *ptr++ - '0';
 	return (number * sign);

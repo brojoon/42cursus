@@ -23,5 +23,7 @@ char	*ft_strchr(const char *s, int c)
 			break ;
 		ptr++;
 	}
-	return ((*ptr == '\0' && c != '\0') ? NULL : ptr);
+	if (*ptr == '\0' && c != '\0')
+		return (NULL);
+	return (ptr);
 }

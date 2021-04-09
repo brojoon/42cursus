@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
@@ -20,7 +21,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t len)
 	if (!dst && !src)
 		return (dst);
 	result = (unsigned char *)dst;
-	tmp = (unsigned char*)src;
+	tmp = (unsigned char *)src;
 	while (len--)
 		*result++ = *tmp++;
 	return (dst);
