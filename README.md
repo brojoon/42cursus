@@ -1,5 +1,3 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/42_Logo.svg" width="142"> 
-
 ## 42cursus
 | Circle | Project        | Language | Description                 | Status      |
 |:-:|:--------------------|:-------:|:---------------------------:|:------------:|
