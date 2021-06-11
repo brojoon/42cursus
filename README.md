@@ -4,7 +4,7 @@
 | 0 | [Libft](https://github.com/BroJoon/libft)|    C     | My very first own C library               |
 | 1 | [get_next_line](https://github.com/BroJoon/get_next_line)       |    C     | Reading a line on a fd is way too tedious |
 |   | [ft_printf](https://github.com/BroJoon/ft_printf)           |    C     | Because putnbr and putstr aren’t enough   |
-| 2 | [ft_server](https://github.com/BroJoon/ft_server)           |  docker  | System Administration with Docker         |
+| 2 | [ft_server](https://github.com/BroJoon/ft_server)           |  Docker  | System Administration with Docker         |
 |   | miniRT              |    C     | My ﬁrst RayTracer with miniLibX           |
 |   | [cub3d](https://github.com/BroJoon/cub3d)|    C     | My ﬁrst RayCaster with miniLibX           |
 |   | [pipex](https://github.com/BroJoon/pipex)|    C     | UNIX mechanism that you already know      |                              
