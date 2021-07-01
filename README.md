@@ -13,7 +13,7 @@
 |   | [ft_services](https://github.com/BroJoon/ft_services)|Kubernetes| System Administration with Kubernetes     |
 | 4 | [Philosophers](https://github.com/BroJoon/philosophers)|    C     | Implement Dining philosophers problem     |
 |   | [CPP Module](https://github.com/BroJoon/cpp_module)|   CPP    | Time to dive into C++ OOP!                |
-| 5 | ft_irc              |   CPP    |                                           |
+| 5 | ft_irc              |   CPP    |                                           |Internet Relay Chat
 |   | webserv             |   CPP    | Write own HTTP server                     |
 |   | [ft_containers](https://github.com/BroJoon/ft_container)       |   CPP    | Implement C++98 STL                       |
 | 6 | ft_transcendence    |          |                                           |
