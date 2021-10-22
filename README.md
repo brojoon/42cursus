@@ -16,4 +16,4 @@
 | 5 | [webserv](https://github.com/brojoon/Webserv)             |   CPP    | Write own HTTP server                     |
 |   | ft_irc              |   CPP    | Internet Relay Chat             
 |   | [ft_containers](https://github.com/BroJoon/ft_container)       |   CPP    | Implement C++98 STL                       |
-| 6 | ft_transcendence    |          |                                           |
+| 6 | [ft_transcendence](https://github.com/brojoon/ft_transcendence)    |          |                                           |
